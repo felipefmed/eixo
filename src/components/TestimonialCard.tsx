@@ -30,8 +30,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       .substring(0, 2);
   };
 
-  // URL de fallback confiável baseada no nome
-  const fallbackImageUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff`;
+  // URL de fallback confiável baseada no nome e usando PNG preferivelmente
+  const fallbackImageUrl = imageUrl.endsWith('.svg') 
+    ? `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&format=png`
+    : imageUrl;
 
   return (
     <div className="person-card">
@@ -50,7 +52,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
               />
             ) : (
               <AvatarImage 
-                src={fallbackImageUrl} 
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&format=png`}
                 alt={name}
               />
             )}

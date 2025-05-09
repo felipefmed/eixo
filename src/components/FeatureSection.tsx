@@ -23,18 +23,27 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 }) => {
   const [imageError, setImageError] = useState(false);
   
-  // Múltiplas opções de imagens de fallback para maior confiabilidade
+  // Múltiplas opções de imagens de fallback para maior confiabilidade (usando PNGs)
   const fallbackImages = [
-    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=580&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1579684288307-5e0d45789e8d?q=80&w=580&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=580&auto=format&fit=crop&fm=png",
+    "https://images.unsplash.com/photo-1579684288307-5e0d45789e8d?q=80&w=580&auto=format&fit=crop&fm=png",
     "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://plus.unsplash.com/premium_photo-1670984940113-f3aa1cd1309a?q=80&w=580&auto=format&fit=crop"
+    "https://plus.unsplash.com/premium_photo-1670984940113-f3aa1cd1309a?q=80&w=580&auto=format&fit=crop&fm=png"
   ];
   
   // Escolher uma imagem de fallback aleatória para variedade
   const getRandomFallbackImage = () => {
     const randomIndex = Math.floor(Math.random() * fallbackImages.length);
     return fallbackImages[randomIndex];
+  };
+  
+  // Use the original image if it's a PNG, otherwise use a fallback
+  const getImageSource = () => {
+    if (imageError) {
+      return getRandomFallbackImage();
+    }
+    
+    return imageSrc;
   };
   
   return (
@@ -46,7 +55,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
         <div className="w-full md:w-1/2">
           <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
             <img 
-              src={imageError ? getRandomFallbackImage() : imageSrc}
+              src={getImageSource()}
               alt={title}
               className="w-full h-full object-cover"
               onError={() => setImageError(true)}
