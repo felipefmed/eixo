@@ -1,13 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import FeatureSection from '../components/FeatureSection';
 import TestimonialCard from '../components/TestimonialCard';
-
 const Index = () => {
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero Section */}
       <section className="relative bg-white py-24 md:py-32 px-6">
         <div className="container mx-auto">
@@ -28,11 +25,7 @@ const Index = () => {
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <img 
-                src="/public/lovable-uploads/a2901278-687c-4ed9-843b-4aa480d74fbc.png" 
-                alt="Eixo - HIV não é o fim" 
-                className="max-w-md mx-auto"
-              />
+              <img alt="Eixo - HIV não é o fim" className="max-w-md mx-auto" src="/lovable-uploads/fe33eafd-ae4d-4a34-8dfc-dfd92a1031a0.png" />
             </div>
           </div>
         </div>
@@ -55,69 +48,24 @@ const Index = () => {
 
       {/* Services Section */}
       <section className="bg-white">
-        <FeatureSection 
-          title="Encontrar locais de apoio" 
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." 
-          imageSrc="https://cdn.pixabay.com/photo/2017/09/28/13/38/map-2795425_1280.png"
-          buttonText="Saiba mais"
-          buttonLink="/encontre-ong"
-          imagePosition="left"
-        />
+        <FeatureSection title="Encontrar locais de apoio" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://cdn.pixabay.com/photo/2017/09/28/13/38/map-2795425_1280.png" buttonText="Saiba mais" buttonLink="/encontre-ong" imagePosition="left" />
 
-        <FeatureSection 
-          title="Conhecer histórias" 
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." 
-          imageSrc="https://cdn.pixabay.com/photo/2017/08/06/00/27/people-2587156_1280.png"
-          buttonText="Saiba mais"
-          buttonLink="/historias"
-          imagePosition="right"
-        />
+        <FeatureSection title="Conhecer histórias" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://cdn.pixabay.com/photo/2017/08/06/00/27/people-2587156_1280.png" buttonText="Saiba mais" buttonLink="/historias" imagePosition="right" />
 
-        <FeatureSection 
-          title="Sanar dúvidas" 
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." 
-          imageSrc="https://cdn.pixabay.com/photo/2017/01/31/15/33/question-2025102_1280.png"
-          buttonText="Saiba mais"
-          buttonLink="/duvidas"
-          imagePosition="left"
-        />
+        <FeatureSection title="Sanar dúvidas" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://cdn.pixabay.com/photo/2017/01/31/15/33/question-2025102_1280.png" buttonText="Saiba mais" buttonLink="/duvidas" imagePosition="left" />
       </section>
 
       {/* Testimonials Section */}
       <section className="bg-gray-50 py-20 px-6">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <TestimonialCard 
-              quote="É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura."
-              name="Gabriel Estrela"
-              role="Criador de conteúdo"
-              imageUrl="https://randomuser.me/api/portraits/men/32.jpg"
-              bgColor="bg-eixo-yellow"
-            />
+            <TestimonialCard quote="É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura." name="Gabriel Estrela" role="Criador de conteúdo" imageUrl="https://randomuser.me/api/portraits/men/32.jpg" bgColor="bg-eixo-yellow" />
             
-            <TestimonialCard 
-              quote="Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos."
-              name="Tamillys Lírio"
-              role="Psicóloga e ativista"
-              imageUrl="https://randomuser.me/api/portraits/women/44.jpg"
-              bgColor="bg-eixo-lightBlue"
-            />
+            <TestimonialCard quote="Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos." name="Tamillys Lírio" role="Psicóloga e ativista" imageUrl="https://randomuser.me/api/portraits/women/44.jpg" bgColor="bg-eixo-lightBlue" />
 
-            <TestimonialCard 
-              quote="É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real."
-              name="Silvia Almeira"
-              role="Ativista e consultora"
-              imageUrl="https://randomuser.me/api/portraits/women/29.jpg"
-              bgColor="bg-eixo-lightGreen"
-            />
+            <TestimonialCard quote="É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real." name="Silvia Almeira" role="Ativista e consultora" imageUrl="https://randomuser.me/api/portraits/women/29.jpg" bgColor="bg-eixo-lightGreen" />
 
-            <TestimonialCard 
-              quote="O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo."
-              name="João Netto"
-              role="Criador de conteúdo"
-              imageUrl="https://randomuser.me/api/portraits/men/64.jpg"
-              bgColor="bg-eixo-lightPurple"
-            />
+            <TestimonialCard quote="O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo." name="João Netto" role="Criador de conteúdo" imageUrl="https://randomuser.me/api/portraits/men/64.jpg" bgColor="bg-eixo-lightPurple" />
           </div>
           
           <div className="text-center mt-12">
@@ -127,8 +75,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Index;
