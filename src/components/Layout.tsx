@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import ChatButton from './ChatButton';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Navbar />
       <main className="flex-grow pt-16">{children}</main>
       <Footer />
+      <ChatButton />
     </div>
   );
 };
