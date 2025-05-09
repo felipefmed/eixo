@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 type TestimonialCardProps = {
   quote: string;
@@ -17,6 +18,18 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   imageUrl, 
   bgColor 
 }) => {
+  const [imageError, setImageError] = useState(false);
+  
+  // Extrair iniciais do nome para o fallback
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(part => part[0])
+      .join('')
+      .toUpperCase()
+      .substring(0, 2);
+  };
+
   return (
     <div className="person-card">
       <div className={cn("person-quote", bgColor)}>
@@ -25,11 +38,18 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       
       <div className="person-info">
         <div className="person-avatar">
-          <img 
-            src={imageUrl} 
-            alt={name} 
-            className="w-full h-full object-cover"
-          />
+          <Avatar className="w-full h-full">
+            {!imageError ? (
+              <AvatarImage 
+                src={imageUrl} 
+                alt={name}
+                onError={() => setImageError(true)}
+              />
+            ) : null}
+            <AvatarFallback className="bg-eixo-purple text-white">
+              {getInitials(name)}
+            </AvatarFallback>
+          </Avatar>
         </div>
         <div className="person-meta">
           <h4 className="font-bold">{name}</h4>

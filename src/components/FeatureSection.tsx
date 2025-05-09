@@ -2,6 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 type FeatureSectionProps = {
   title: string;
@@ -20,6 +21,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   buttonLink,
   imagePosition = 'left'
 }) => {
+  // Imagem de fallback genérica, se a imagem original falhar
+  const fallbackImage = "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=580&auto=format&fit=crop";
+  
   return (
     <div className="section-padding">
       <div className={cn(
@@ -27,11 +31,19 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
         imagePosition === 'right' && "md:flex-row-reverse"
       )}>
         <div className="w-full md:w-1/2">
-          <img 
-            src={imageSrc}
-            alt={title}
-            className="w-full h-auto max-w-md mx-auto"
-          />
+          <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
+            <img 
+              src={imageSrc}
+              alt={title}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.src !== fallbackImage) {
+                  target.src = fallbackImage;
+                }
+              }}
+            />
+          </AspectRatio>
         </div>
         
         <div className="w-full md:w-1/2">
