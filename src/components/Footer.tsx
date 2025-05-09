@@ -1,20 +1,13 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Footer = () => {
-  return (
-    <footer className="bg-gray-800 text-white py-12 px-6">
+  return <footer className="bg-gray-800 text-white py-12 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo e Descrição */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="inline-block mb-6">
-              <img 
-                src="/public/lovable-uploads/a2901278-687c-4ed9-843b-4aa480d74fbc.png" 
-                alt="Logo Eixo" 
-                className="h-8 invert" 
-              />
+              <img alt="Logo Eixo" className="h-8 invert" src="/lovable-uploads/d6d82843-f58b-4ee7-b9b6-e1ffb20ac1ba.png" />
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
               Uma iniciativa para apoiar pessoas que vivem com HIV, combater a desinformação e reduzir o estigma.
@@ -70,8 +63,6 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} Eixo. Todos os direitos reservados.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
