@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -21,8 +21,21 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   buttonLink,
   imagePosition = 'left'
 }) => {
-  // Imagem de fallback genérica, se a imagem original falhar
-  const fallbackImage = "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=580&auto=format&fit=crop";
+  const [imageError, setImageError] = useState(false);
+  
+  // Múltiplas opções de imagens de fallback para maior confiabilidade
+  const fallbackImages = [
+    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=580&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1579684288307-5e0d45789e8d?q=80&w=580&auto=format&fit=crop",
+    "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://plus.unsplash.com/premium_photo-1670984940113-f3aa1cd1309a?q=80&w=580&auto=format&fit=crop"
+  ];
+  
+  // Escolher uma imagem de fallback aleatória para variedade
+  const getRandomFallbackImage = () => {
+    const randomIndex = Math.floor(Math.random() * fallbackImages.length);
+    return fallbackImages[randomIndex];
+  };
   
   return (
     <div className="section-padding">
@@ -33,15 +46,10 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
         <div className="w-full md:w-1/2">
           <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
             <img 
-              src={imageSrc}
+              src={imageError ? getRandomFallbackImage() : imageSrc}
               alt={title}
               className="w-full h-full object-cover"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (target.src !== fallbackImage) {
-                  target.src = fallbackImage;
-                }
-              }}
+              onError={() => setImageError(true)}
             />
           </AspectRatio>
         </div>

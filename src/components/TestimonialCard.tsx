@@ -30,6 +30,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       .substring(0, 2);
   };
 
+  // URL de fallback confiável baseada no nome
+  const fallbackImageUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff`;
+
   return (
     <div className="person-card">
       <div className={cn("person-quote", bgColor)}>
@@ -45,7 +48,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 alt={name}
                 onError={() => setImageError(true)}
               />
-            ) : null}
+            ) : (
+              <AvatarImage 
+                src={fallbackImageUrl} 
+                alt={name}
+              />
+            )}
             <AvatarFallback className="bg-eixo-purple text-white">
               {getInitials(name)}
             </AvatarFallback>
