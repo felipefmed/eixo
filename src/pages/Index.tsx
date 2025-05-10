@@ -18,13 +18,18 @@ const Index = () => {
                 estamos aqui pra te <br />
                 mostrar que não é o fim.
               </h1>
-              <div className="flex flex-wrap gap-4 mt-8">
-                <Link to="/projeto" className="btn btn-primary">
-                  Conheça o projeto
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8">
+                <Link to="#chat" className="btn btn-yellow text-lg font-semibold shadow-lg transform hover:scale-105 transition-all">
+                  Converse com alguém
                 </Link>
-                <Link to="/duvidas" className="btn btn-secondary">
-                  Tire suas dúvidas
-                </Link>
+                <div className="flex flex-wrap gap-4 mt-4 sm:mt-0">
+                  <Link to="/projeto" className="btn btn-primary">
+                    Conheça o projeto
+                  </Link>
+                  <Link to="/duvidas" className="btn btn-secondary">
+                    Tire suas dúvidas
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="w-full md:w-1/2">

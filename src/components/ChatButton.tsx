@@ -40,10 +40,11 @@ const ChatButton = () => {
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button 
-          className="fixed bottom-6 right-6 rounded-full p-4 shadow-lg bg-eixo-purple text-white hover:bg-eixo-purple/90"
+          id="chat"
+          className="fixed bottom-6 right-6 rounded-full p-6 shadow-lg bg-eixo-purple text-white hover:bg-eixo-purple/90"
           onClick={() => setIsOpen(prev => !prev)}
         >
-          {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+          {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
         </Button>
       </PopoverTrigger>
       <PopoverContent 
