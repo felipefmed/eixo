@@ -78,11 +78,11 @@ const Index = () => {
 
       {/* Services Section */}
       <section className="bg-white">
-        <FeatureSection title="Encontrar locais de apoio" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://images.unsplash.com/photo-1569396116180-210c182bedb8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/encontre-apoio" imagePosition="left" />
+        <FeatureSection title="Encontrar locais de apoio" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/encontre-apoio" imagePosition="left" />
 
-        <FeatureSection title="Conhecer histórias" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/historias" imagePosition="right" />
+        <FeatureSection title="Conhecer histórias" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/historias" imagePosition="right" />
 
-        <FeatureSection title="Sanar dúvidas" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/duvidas" imagePosition="left" />
+        <FeatureSection title="Sanar dúvidas" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/duvidas" imagePosition="left" />
       </section>
 
       {/* Testimonials Section */}
