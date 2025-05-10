@@ -5,8 +5,16 @@ import Layout from '../components/Layout';
 import FeatureSection from '../components/FeatureSection';
 import TestimonialCard from '../components/TestimonialCard';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { useChatState } from '../components/ChatButton';
 
 const Index = () => {
+  const { openChat } = useChatState;
+
+  const handleChatClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openChat();
+  };
+
   return <Layout>
       {/* Hero Section */}
       <section className="relative bg-white py-24 md:py-32 px-6">
@@ -19,9 +27,13 @@ const Index = () => {
                 mostrar que não é o fim.
               </h1>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8">
-                <Link to="#chat" className="btn btn-yellow text-lg font-semibold shadow-lg transform hover:scale-105 transition-all">
+                <a 
+                  href="#" 
+                  onClick={handleChatClick} 
+                  className="btn btn-yellow text-lg font-semibold shadow-lg transform hover:scale-105 transition-all bg-eixo-yellow text-black py-3 px-6 rounded-full"
+                >
                   Converse com alguém
-                </Link>
+                </a>
                 <div className="flex flex-wrap gap-4 mt-4 sm:mt-0">
                   <Link to="/projeto" className="btn btn-primary">
                     Conheça o projeto
@@ -66,7 +78,7 @@ const Index = () => {
 
       {/* Services Section */}
       <section className="bg-white">
-        <FeatureSection title="Encontrar locais de apoio" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://images.unsplash.com/photo-1569396116180-210c182bedb8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/encontre-ong" imagePosition="left" />
+        <FeatureSection title="Encontrar locais de apoio" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://images.unsplash.com/photo-1569396116180-210c182bedb8?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/encontre-apoio" imagePosition="left" />
 
         <FeatureSection title="Conhecer histórias" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/historias" imagePosition="right" />
 

@@ -5,7 +5,8 @@ import Layout from '../components/Layout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-const EncontreONG = () => {
+// Rename the component to match the new URL
+const EncontreApoio = () => {
   const [cidade, setCidade] = useState('');
   
   return (
@@ -240,4 +241,4 @@ const EncontreONG = () => {
   );
 };
 
-export default EncontreONG;
+export default EncontreApoio;

@@ -6,8 +6,10 @@ import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 interface StoryProps {
+  id: string;
   name: string;
   role: string;
   imageUrl: string;
@@ -18,6 +20,7 @@ interface StoryProps {
 }
 
 const StoryCard: React.FC<StoryProps> = ({
+  id,
   name,
   role,
   imageUrl,
@@ -59,18 +62,30 @@ const StoryCard: React.FC<StoryProps> = ({
           )}
         </div>
         
-        {tags.length > 0 && (
-          <div className="mt-auto pt-4 flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <span 
-                key={index} 
-                className={`inline-block px-3 py-1 rounded-full text-xs ${bgColor} bg-opacity-30`}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="mt-auto">
+          {tags.length > 0 && (
+            <div className="pt-4 flex flex-wrap gap-2 mb-4">
+              {tags.map((tag, index) => (
+                <span 
+                  key={index} 
+                  className={`inline-block px-3 py-1 rounded-full text-xs ${bgColor} bg-opacity-30`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          
+          <Link to={`/historias/${id}`}>
+            <Button 
+              variant="outline" 
+              className={`w-full mt-2 border-${bgColor.replace('bg-', '')} text-${bgColor.replace('bg-', '')} hover:bg-${bgColor.replace('bg-', '')}/10`}
+            >
+              <span>Conheça mais</span>
+              <ArrowRight size={16} className="ml-2" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </Card>
   );
@@ -113,6 +128,15 @@ const FeaturedStory = () => (
           <span className="bg-eixo-lightPurple px-3 py-1 rounded-full text-sm">Educação</span>
           <span className="bg-eixo-lightPurple px-3 py-1 rounded-full text-sm">Indetectável</span>
         </div>
+        
+        <div className="mt-6">
+          <Link to="/historias/gabriel-estrela">
+            <Button className="flex items-center gap-2">
+              Conheça mais
+              <ArrowRight size={16} />
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   </div>
@@ -121,6 +145,7 @@ const FeaturedStory = () => (
 const Historias = () => {
   const stories: StoryProps[] = [
     {
+      id: 'tamillys-lirio',
       quote: "Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos.",
       name: "Tamillys Lírio",
       role: "Psicóloga e ativista",
@@ -130,6 +155,7 @@ const Historias = () => {
       tags: ["Saúde Mental", "Ativismo", "Educação"]
     },
     {
+      id: 'silvia-almeida',
       quote: "É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real.",
       name: "Silvia Almeira",
       role: "Ativista e consultora",
@@ -139,6 +165,7 @@ const Historias = () => {
       tags: ["Prevenção", "Conscientização", "PrEP"]
     },
     {
+      id: 'joao-netto',
       quote: "O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo.",
       name: "João Netto",
       role: "Criador de conteúdo",
@@ -148,6 +175,7 @@ const Historias = () => {
       tags: ["Indetectável", "Juventude", "Redes sociais"]
     },
     {
+      id: 'mariana-santos',
       quote: "Quando descobri meu diagnóstico, pensei que minha vida tinha acabado. Hoje, vivo normalmente, sigo meu tratamento e tenho um filho que nasceu sem o vírus.",
       name: "Mariana Santos",
       role: "Professora",
@@ -157,6 +185,7 @@ const Historias = () => {
       tags: ["Maternidade", "Família", "Gravidez"]
     },
     {
+      id: 'carlos-ribeiro',
       quote: "É importante falar: viver com HIV hoje não é como nos anos 80 ou 90. A medicina avançou muito e podemos ter uma vida normal, com qualidade e longevidade.",
       name: "Carlos Ribeiro",
       role: "Médico e ativista",
@@ -166,6 +195,7 @@ const Historias = () => {
       tags: ["Medicina", "Tratamento", "Saúde pública"]
     },
     {
+      id: 'paulo-henrique',
       quote: "Falar abertamente sobre meu status sorológico me libertou. O segredo só aumenta o estigma, e o estigma mata mais que o próprio vírus.",
       name: "Paulo Henrique",
       role: "Designer e voluntário",

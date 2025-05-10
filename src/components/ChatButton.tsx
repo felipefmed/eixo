@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { 
@@ -8,6 +8,22 @@ import {
   PopoverTrigger 
 } from './ui/popover';
 import { Input } from './ui/input';
+
+// Create a chat context to control the chat state from other components
+export const useChatState = (() => {
+  let setIsOpenFunction: React.Dispatch<React.SetStateAction<boolean>> | null = null;
+  
+  return {
+    registerSetIsOpen: (func: React.Dispatch<React.SetStateAction<boolean>>) => {
+      setIsOpenFunction = func;
+    },
+    openChat: () => {
+      if (setIsOpenFunction) {
+        setIsOpenFunction(true);
+      }
+    }
+  };
+})();
 
 const ChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +34,11 @@ const ChatButton = () => {
     }
   ]);
   const [newMessage, setNewMessage] = useState('');
+
+  // Register the setIsOpen function with our chat state manager
+  useEffect(() => {
+    useChatState.registerSetIsOpen(setIsOpen);
+  }, []);
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,8 +64,9 @@ const ChatButton = () => {
           id="chat"
           className="fixed bottom-6 right-6 rounded-full p-6 shadow-lg bg-eixo-purple text-white hover:bg-eixo-purple/90"
           onClick={() => setIsOpen(prev => !prev)}
+          style={{ width: '64px', height: '64px' }} // Making the chat button bigger
         >
-          {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
+          {isOpen ? <X size={32} /> : <MessageCircle size={32} />}
         </Button>
       </PopoverTrigger>
       <PopoverContent 
