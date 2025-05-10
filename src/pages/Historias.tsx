@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
@@ -7,6 +6,16 @@ import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious 
+} from "@/components/ui/carousel";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 interface StoryProps {
   id: string;
@@ -91,46 +100,43 @@ const StoryCard: React.FC<StoryProps> = ({
   );
 };
 
-const FeaturedStory = () => (
+const FeaturedStory = ({ story }: { story: StoryProps }) => (
   <div className="relative w-full overflow-hidden rounded-2xl bg-eixo-purple bg-opacity-10 p-6 md:p-10">
     <div className="flex flex-col md:flex-row gap-8 items-center">
       <div className="w-full md:w-1/3">
         <div className="rounded-xl overflow-hidden shadow-xl">
           <img 
-            src="https://randomuser.me/api/portraits/men/32.jpg" 
-            alt="Gabriel Estrela"
+            src={story.imageUrl} 
+            alt={story.name}
             className="w-full aspect-square object-cover"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = `https://ui-avatars.com/api/?name=Gabriel+Estrela&size=200&background=B19AFF&color=fff`;
+              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
             }}
           />
         </div>
       </div>
       <div className="w-full md:w-2/3">
-        <h2 className="text-3xl font-bold mb-4">Gabriel Estrela</h2>
-        <p className="text-lg text-gray-600 mb-2">Criador de conteúdo</p>
+        <h2 className="text-3xl font-bold mb-4">{story.name}</h2>
+        <p className="text-lg text-gray-600 mb-2">{story.role}</p>
         
         <div className="mt-6">
-          <p className="text-xl italic mb-6">
-            "É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura."
-          </p>
+          <p className="text-xl italic mb-6">"{story.quote}"</p>
           <p className="mb-4">
-            Quando recebi meu diagnóstico, pensei que minha vida tinha acabado. Passei semanas em negação, com medo de contar para qualquer pessoa. O estigma em torno do HIV é tão forte que eu mesmo me culpava e me envergonhava, apesar de saber que isso poderia acontecer com qualquer pessoa.
-          </p>
-          <p>
-            Hoje, cinco anos depois, vivo uma vida plena. O tratamento evoluiu tanto que minha carga viral é indetectável, o que significa que não posso transmitir o vírus. Decidi usar minhas redes sociais para falar abertamente sobre o assunto e ajudar outras pessoas que estão passando pelo mesmo.
+            {story.extendedQuote || "Clique em 'Conheça mais' para ler o relato completo."}
           </p>
         </div>
         
-        <div className="mt-8 flex flex-wrap gap-3">
-          <span className="bg-eixo-lightPurple px-3 py-1 rounded-full text-sm">Visibilidade</span>
-          <span className="bg-eixo-lightPurple px-3 py-1 rounded-full text-sm">Educação</span>
-          <span className="bg-eixo-lightPurple px-3 py-1 rounded-full text-sm">Indetectável</span>
-        </div>
+        {story.tags && story.tags.length > 0 && (
+          <div className="mt-8 flex flex-wrap gap-3">
+            {story.tags.map((tag, idx) => (
+              <span key={idx} className={`${story.bgColor} px-3 py-1 rounded-full text-sm`}>{tag}</span>
+            ))}
+          </div>
+        )}
         
         <div className="mt-6">
-          <Link to="/historias/gabriel-estrela">
+          <Link to={`/historias/${story.id}`}>
             <Button className="flex items-center gap-2">
               Conheça mais
               <ArrowRight size={16} />
@@ -142,8 +148,91 @@ const FeaturedStory = () => (
   </div>
 );
 
+const ShareStoryForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [story, setStory] = useState('');
+  const { toast } = useToast();
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real app, this would send the data to a server
+    toast({
+      title: "História enviada!",
+      description: "Obrigado por compartilhar sua história conosco. Entraremos em contato em breve.",
+    });
+    // Reset form
+    setName('');
+    setEmail('');
+    setStory('');
+  };
+  
+  return (
+    <div className="bg-eixo-lightPurple bg-opacity-20 rounded-xl p-8">
+      <h3 className="text-2xl font-bold mb-6">Compartilhe sua história</h3>
+      <p className="text-gray-700 mb-6">
+        Sua experiência pode inspirar outras pessoas. Compartilhe sua jornada conosco e ajude a quebrar estigmas.
+      </p>
+      
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-2">Nome</label>
+            <Input 
+              id="name" 
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              className="w-full" 
+              required 
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2">E-mail</label>
+            <Input 
+              id="email" 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              className="w-full" 
+              required 
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label htmlFor="story" className="block text-sm font-medium mb-2">Sua história</label>
+          <Textarea 
+            id="story" 
+            rows={6} 
+            value={story} 
+            onChange={(e) => setStory(e.target.value)} 
+            className="w-full" 
+            required 
+          />
+        </div>
+        
+        <div className="flex justify-end">
+          <Button type="submit">
+            Enviar
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
 const Historias = () => {
   const stories: StoryProps[] = [
+    {
+      id: 'gabriel-estrela',
+      quote: "É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura.",
+      name: "Gabriel Estrela",
+      role: "Criador de conteúdo",
+      imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+      bgColor: "bg-eixo-lightPurple",
+      extendedQuote: "Quando recebi meu diagnóstico, pensei que minha vida tinha acabado. Passei semanas em negação, com medo de contar para qualquer pessoa. O estigma em torno do HIV é tão forte que eu mesmo me culpava e me envergonhava, apesar de saber que isso poderia acontecer com qualquer pessoa.",
+      tags: ["Visibilidade", "Educação", "Indetectável"]
+    },
     {
       id: 'tamillys-lirio',
       quote: "Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos.",
@@ -219,7 +308,20 @@ const Historias = () => {
         </div>
         
         <section className="mb-24">
-          <FeaturedStory />
+          {/* Featured Stories Carousel */}
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent>
+              {stories.map((story, index) => (
+                <CarouselItem key={story.id}>
+                  <FeaturedStory story={story} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-4 mt-6">
+              <CarouselPrevious className="relative static translate-y-0 left-0" />
+              <CarouselNext className="relative static translate-y-0 right-0" />
+            </div>
+          </Carousel>
         </section>
         
         <section className="mb-16">
@@ -231,15 +333,8 @@ const Historias = () => {
           </div>
         </section>
         
-        <div className="text-center mt-16">
-          <h3 className="text-xl font-semibold mb-4">Sua história também importa</h3>
-          <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-            Compartilhe sua jornada e inspire outras pessoas que estão passando por situações semelhantes. 
-            Juntos, podemos combater o estigma e mostrar que viver com HIV não é o fim.
-          </p>
-          <Button className="btn btn-primary">
-            Compartilhe sua história
-          </Button>
+        <div className="mt-16 max-w-3xl mx-auto">
+          <ShareStoryForm />
         </div>
       </div>
     </Layout>

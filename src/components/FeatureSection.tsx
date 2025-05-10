@@ -47,28 +47,32 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   };
   
   return (
-    <div className="section-padding">
-      <div className={cn(
-        "flex flex-col md:flex-row items-center gap-8 md:gap-16",
-        imagePosition === 'right' && "md:flex-row-reverse"
-      )}>
-        <div className="w-full md:w-1/2">
-          <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
-            <img 
-              src={getImageSource()}
-              alt={title}
-              className="w-full h-full object-cover"
-              onError={() => setImageError(true)}
-            />
-          </AspectRatio>
-        </div>
-        
-        <div className="w-full md:w-1/2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">{title}</h2>
-          <p className="mb-6 text-gray-700">{description}</p>
-          <Link to={buttonLink} className="btn btn-yellow">
-            {buttonText}
-          </Link>
+    <div className="section-padding py-16 px-6">
+      <div className="container mx-auto">
+        <div className={cn(
+          "flex flex-col md:flex-row items-center gap-8 md:gap-16",
+          imagePosition === 'right' && "md:flex-row-reverse"
+        )}>
+          <div className="w-full md:w-1/2">
+            <div className="rounded-lg overflow-hidden shadow-md mx-auto max-w-lg">
+              <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
+                <img 
+                  src={getImageSource()}
+                  alt={title}
+                  className="w-full h-full object-cover"
+                  onError={() => setImageError(true)}
+                />
+              </AspectRatio>
+            </div>
+          </div>
+          
+          <div className="w-full md:w-1/2">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">{title}</h2>
+            <p className="mb-6 text-gray-700">{description}</p>
+            <Link to={buttonLink} className="btn btn-yellow">
+              {buttonText}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

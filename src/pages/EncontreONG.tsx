@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import Layout from '../components/Layout';
@@ -24,13 +25,18 @@ const EncontreApoio = () => {
           </div>
         </div>
         
-        {/* Decorative illustration */}
-        <div className="absolute right-0 top-0 h-full w-1/2 hidden lg:block">
-          <div className="relative h-full w-full">
-            <img alt="Person searching for local ONGs" className="absolute right-0 h-full object-contain" onError={e => {
-            const target = e.target as HTMLImageElement;
-            target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=870&auto=format&fit=crop";
-          }} src="/lovable-uploads/593ecd22-2e34-41d0-8a9e-57cd64fb3756.png" />
+        {/* Decorative illustration with improved spacing */}
+        <div className="absolute right-0 top-0 h-full w-1/3 hidden lg:flex items-center justify-end pr-6">
+          <div className="relative h-4/5 w-full">
+            <img 
+              alt="Person searching for local ONGs" 
+              className="h-full object-contain" 
+              onError={e => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=870&auto=format&fit=crop";
+              }} 
+              src="/lovable-uploads/593ecd22-2e34-41d0-8a9e-57cd64fb3756.png" 
+            />
           </div>
         </div>
       </section>
