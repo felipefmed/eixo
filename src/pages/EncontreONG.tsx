@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import Layout from '../components/Layout';
@@ -8,9 +7,7 @@ import { Button } from '@/components/ui/button';
 // Rename the component to match the new URL
 const EncontreApoio = () => {
   const [cidade, setCidade] = useState('');
-  
-  return (
-    <Layout>
+  return <Layout>
       <section className="bg-eixo-yellow min-h-[60vh] flex items-center relative overflow-hidden">
         <div className="container mx-auto px-6 py-20 relative z-10">
           <div className="max-w-3xl">
@@ -19,16 +16,8 @@ const EncontreApoio = () => {
             </h1>
             
             <div className="mt-10 bg-white rounded-full shadow-xl flex overflow-hidden max-w-xl">
-              <Input
-                type="text"
-                placeholder="Em que cidade você está?"
-                className="flex-grow border-0 focus-visible:ring-0 text-base px-6 py-6 h-auto"
-                value={cidade}
-                onChange={(e) => setCidade(e.target.value)}
-              />
-              <Button 
-                className="bg-white hover:bg-gray-100 text-eixo-black rounded-full px-6"
-              >
+              <Input type="text" placeholder="Em que cidade você está?" className="flex-grow border-0 focus-visible:ring-0 text-base px-6 py-6 h-auto" value={cidade} onChange={e => setCidade(e.target.value)} />
+              <Button className="bg-white hover:bg-gray-100 text-eixo-black rounded-full px-6">
                 <Search size={24} />
               </Button>
             </div>
@@ -38,15 +27,10 @@ const EncontreApoio = () => {
         {/* Decorative illustration */}
         <div className="absolute right-0 top-0 h-full w-1/2 hidden lg:block">
           <div className="relative h-full w-full">
-            <img 
-              src="/lovable-uploads/d47f5fe6-31ae-4fe0-a1f8-e8c312bd6af1.png" 
-              alt="Person searching for local ONGs" 
-              className="absolute right-0 h-full object-contain"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=870&auto=format&fit=crop";
-              }}
-            />
+            <img alt="Person searching for local ONGs" className="absolute right-0 h-full object-contain" onError={e => {
+            const target = e.target as HTMLImageElement;
+            target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=870&auto=format&fit=crop";
+          }} src="/lovable-uploads/593ecd22-2e34-41d0-8a9e-57cd64fb3756.png" />
           </div>
         </div>
       </section>
@@ -94,11 +78,7 @@ const EncontreApoio = () => {
                 
                 <div>
                   <label className="block text-sm font-medium mb-2">Cidade</label>
-                  <input 
-                    type="text" 
-                    className="w-full p-3 border border-gray-300 rounded-md" 
-                    placeholder="Digite o nome da cidade"
-                  />
+                  <input type="text" className="w-full p-3 border border-gray-300 rounded-md" placeholder="Digite o nome da cidade" />
                 </div>
               </div>
               
@@ -152,12 +132,7 @@ const EncontreApoio = () => {
                   O GIV é uma ONG que trabalha em defesa dos direitos das pessoas que 
                   vivem com HIV/AIDS, oferecendo grupos de apoio e informação.
                 </p>
-                <a 
-                  href="http://giv.org.br" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-eixo-purple hover:underline font-medium inline-block mb-3"
-                >
+                <a href="http://giv.org.br" target="_blank" rel="noopener noreferrer" className="text-eixo-purple hover:underline font-medium inline-block mb-3">
                   giv.org.br
                 </a>
                 <div className="flex items-center gap-3">
@@ -181,12 +156,7 @@ const EncontreApoio = () => {
                   A ABIA atua na promoção da educação em HIV/AIDS e direitos humanos, 
                   trabalhando para reduzir o estigma e promover políticas públicas.
                 </p>
-                <a 
-                  href="http://abiaids.org.br" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-eixo-purple hover:underline font-medium inline-block mb-3"
-                >
+                <a href="http://abiaids.org.br" target="_blank" rel="noopener noreferrer" className="text-eixo-purple hover:underline font-medium inline-block mb-3">
                   abiaids.org.br
                 </a>
                 <div className="flex items-center gap-3">
@@ -210,12 +180,7 @@ const EncontreApoio = () => {
                   O GAPA oferece testagem gratuita para HIV, apoio psicológico para 
                   pessoas vivendo com o vírus e seus familiares, além de promover campanhas de prevenção.
                 </p>
-                <a 
-                  href="http://gapabahia.org.br" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-eixo-purple hover:underline font-medium inline-block mb-3"
-                >
+                <a href="http://gapabahia.org.br" target="_blank" rel="noopener noreferrer" className="text-eixo-purple hover:underline font-medium inline-block mb-3">
                   gapabahia.org.br
                 </a>
                 <div className="flex items-center gap-3">
@@ -237,8 +202,6 @@ const EncontreApoio = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default EncontreApoio;
