@@ -13,9 +13,6 @@ import {
   CarouselNext,
   CarouselPrevious 
 } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 
 interface StoryProps {
   id: string;
@@ -42,6 +39,8 @@ const StoryCard: React.FC<StoryProps> = ({
     .split(' ')
     .map(part => part[0])
     .join('');
+
+  const colorName = bgColor.replace('bg-', '');
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -88,7 +87,7 @@ const StoryCard: React.FC<StoryProps> = ({
           <Link to={`/historias/${id}`}>
             <Button 
               variant="outline" 
-              className={`w-full mt-2 border-${bgColor.replace('bg-', '')} text-${bgColor.replace('bg-', '')} hover:bg-${bgColor.replace('bg-', '')}/10`}
+              className={`w-full mt-2 border-${colorName} text-${colorName} hover:bg-${colorName} hover:text-white transition-colors duration-300 ease-in-out`}
             >
               <span>Conheça mais</span>
               <ArrowRight size={16} className="ml-2" />
@@ -101,122 +100,81 @@ const StoryCard: React.FC<StoryProps> = ({
 };
 
 const FeaturedStory = ({ story }: { story: StoryProps }) => (
-  <div className="relative w-full overflow-hidden rounded-2xl bg-eixo-purple bg-opacity-10 p-6 md:p-10">
-    <div className="flex flex-col md:flex-row gap-8 items-center">
-      <div className="w-full md:w-1/3">
-        <div className="rounded-xl overflow-hidden shadow-xl">
-          <img 
-            src={story.imageUrl} 
-            alt={story.name}
-            className="w-full aspect-square object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
-            }}
-          />
-        </div>
-      </div>
-      <div className="w-full md:w-2/3">
-        <h2 className="text-3xl font-bold mb-4">{story.name}</h2>
-        <p className="text-lg text-gray-600 mb-2">{story.role}</p>
-        
-        <div className="mt-6">
-          <p className="text-xl italic mb-6">"{story.quote}"</p>
-          <p className="mb-4">
-            {story.extendedQuote || "Clique em 'Conheça mais' para ler o relato completo."}
-          </p>
-        </div>
-        
-        {story.tags && story.tags.length > 0 && (
-          <div className="mt-8 flex flex-wrap gap-3">
-            {story.tags.map((tag, idx) => (
-              <span key={idx} className={`${story.bgColor} px-3 py-1 rounded-full text-sm`}>{tag}</span>
-            ))}
+  <div className="relative w-full overflow-hidden rounded-2xl">
+    <div className="absolute inset-0 z-0">
+      <img 
+        src={story.imageUrl} 
+        alt={story.name}
+        className="w-full h-full object-cover opacity-20"
+        onError={(e) => {
+          const target = e.target as HTMLImageElement;
+          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
+        }}
+      />
+      <div className={`absolute inset-0 bg-${story.bgColor.replace('bg-', '')} bg-opacity-30 mix-blend-multiply`}></div>
+    </div>
+    
+    <div className="relative z-10 p-6 md:p-10">
+      <div className="flex flex-col md:flex-row gap-8 items-center">
+        <div className="w-full md:w-1/3">
+          <div className="rounded-xl overflow-hidden">
+            <img 
+              src={story.imageUrl} 
+              alt={story.name}
+              className="w-full aspect-square object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
+              }}
+            />
           </div>
-        )}
-        
-        <div className="mt-6">
-          <Link to={`/historias/${story.id}`}>
-            <Button className="flex items-center gap-2">
-              Conheça mais
-              <ArrowRight size={16} />
-            </Button>
-          </Link>
+        </div>
+        <div className="w-full md:w-2/3">
+          <h2 className="text-3xl font-bold mb-4">{story.name}</h2>
+          <p className="text-lg text-gray-600 mb-2">{story.role}</p>
+          
+          <div className="mt-6">
+            <p className="text-xl italic mb-6">"{story.quote}"</p>
+            <p className="mb-4">
+              {story.extendedQuote || "Clique em 'Conheça mais' para ler o relato completo."}
+            </p>
+          </div>
+          
+          {story.tags && story.tags.length > 0 && (
+            <div className="mt-8 flex flex-wrap gap-3">
+              {story.tags.map((tag, idx) => (
+                <span key={idx} className={`${story.bgColor} px-3 py-1 rounded-full text-sm`}>{tag}</span>
+              ))}
+            </div>
+          )}
+          
+          <div className="mt-6">
+            <Link to={`/historias/${story.id}`}>
+              <Button className="flex items-center gap-2 bg-eixo-purple hover:bg-violet-500 transition-colors">
+                Conheça mais
+                <ArrowRight size={16} />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   </div>
 );
 
-const ShareStoryForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [story, setStory] = useState('');
-  const { toast } = useToast();
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, this would send the data to a server
-    toast({
-      title: "História enviada!",
-      description: "Obrigado por compartilhar sua história conosco. Entraremos em contato em breve.",
-    });
-    // Reset form
-    setName('');
-    setEmail('');
-    setStory('');
-  };
-  
+const ShareStorySection = () => {
   return (
     <div className="bg-eixo-lightPurple bg-opacity-20 rounded-xl p-8">
       <h3 className="text-2xl font-bold mb-6">Compartilhe sua história</h3>
-      <p className="text-gray-700 mb-6">
+      <p className="text-gray-700 mb-4">
         Sua experiência pode inspirar outras pessoas. Compartilhe sua jornada conosco e ajude a quebrar estigmas.
       </p>
-      
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">Nome</label>
-            <Input 
-              id="name" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-              className="w-full" 
-              required 
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">E-mail</label>
-            <Input 
-              id="email" 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              className="w-full" 
-              required 
-            />
-          </div>
-        </div>
-        
-        <div>
-          <label htmlFor="story" className="block text-sm font-medium mb-2">Sua história</label>
-          <Textarea 
-            id="story" 
-            rows={6} 
-            value={story} 
-            onChange={(e) => setStory(e.target.value)} 
-            className="w-full" 
-            required 
-          />
-        </div>
-        
-        <div className="flex justify-end">
-          <Button type="submit">
-            Enviar
-          </Button>
-        </div>
-      </form>
+      <p className="text-gray-700 mb-6">
+        Para compartilhar sua história, envie um email para <a href="mailto:contato@eixo.org" className="text-eixo-purple font-semibold hover:text-violet-500 underline">contato@eixo.org</a> com o assunto "Minha História".
+      </p>
+      <p className="text-gray-700 italic">
+        Todas as histórias passam por um processo de revisão antes de serem publicadas. Sua privacidade será respeitada.
+      </p>
     </div>
   );
 };
@@ -308,18 +266,24 @@ const Historias = () => {
         </div>
         
         <section className="mb-24">
-          {/* Featured Stories Carousel */}
-          <Carousel className="w-full max-w-5xl mx-auto">
-            <CarouselContent>
+          {/* Featured Stories Carousel with horizontal animation */}
+          <Carousel 
+            className="w-full max-w-5xl mx-auto"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent className="cursor-grab active:cursor-grabbing">
               {stories.map((story, index) => (
-                <CarouselItem key={story.id}>
+                <CarouselItem key={story.id} className="transition-transform duration-500">
                   <FeaturedStory story={story} />
                 </CarouselItem>
               ))}
             </CarouselContent>
             <div className="flex justify-center gap-4 mt-6">
-              <CarouselPrevious className="relative static translate-y-0 left-0" />
-              <CarouselNext className="relative static translate-y-0 right-0" />
+              <CarouselPrevious className="relative static translate-y-0 left-0 hover:bg-eixo-purple hover:text-white transition-colors" />
+              <CarouselNext className="relative static translate-y-0 right-0 hover:bg-eixo-purple hover:text-white transition-colors" />
             </div>
           </Carousel>
         </section>
@@ -334,7 +298,7 @@ const Historias = () => {
         </section>
         
         <div className="mt-16 max-w-3xl mx-auto">
-          <ShareStoryForm />
+          <ShareStorySection />
         </div>
       </div>
     </Layout>

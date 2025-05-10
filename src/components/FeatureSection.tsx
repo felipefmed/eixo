@@ -54,7 +54,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           imagePosition === 'right' && "md:flex-row-reverse"
         )}>
           <div className="w-full md:w-1/2">
-            <div className="rounded-lg overflow-hidden shadow-md mx-auto max-w-lg">
+            <div className="rounded-lg overflow-hidden mx-auto max-w-lg">
               <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
                 <img 
                   src={getImageSource()}
