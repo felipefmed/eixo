@@ -25,9 +25,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   
   // Múltiplas opções de imagens de fallback para maior confiabilidade (usando PNGs)
   const fallbackImages = [
-    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=580&auto=format&fit=crop&fm=png",
-    "https://images.unsplash.com/photo-1579684288307-5e0d45789e8d?q=80&w=580&auto=format&fit=crop&fm=png",
-    "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?ssl=1",
+    "https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?ssl=1",
+    "https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?ssl=1",
     "https://plus.unsplash.com/premium_photo-1670984940113-f3aa1cd1309a?q=80&w=580&auto=format&fit=crop&fm=png"
   ];
   
