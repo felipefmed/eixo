@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
@@ -14,6 +13,18 @@ import {
   CarouselNext,
   CarouselPrevious 
 } from "@/components/ui/carousel";
+
+// Cores base e suas variantes mais intensas para o botão e hover
+const buttonColors: Record<string, { base: string, hover: string }> = {
+  "bg-eixo-lightPurple": { base: "#B19AFF", hover: "#9B87F5" }, // roxo base e roxo mais escuro/saturado
+  "bg-eixo-lightBlue":   { base: "#1EAEDB", hover: "#0EA5E9" }, // azul vibrante e azul + saturado
+  "bg-eixo-lightGreen":  { base: "#5EE2A0", hover: "#22C55E" }, // verde vibrante e verde mais escuro
+  "bg-eixo-yellow":      { base: "#FFD875", hover: "#FFC300" }, // amarelo vibrante e amarelo mais intenso
+};
+
+// Função utilitária para pegar as cores certas do botão pelo bgColor do card
+const getButtonColors = (bgColor: string) =>
+  buttonColors[bgColor] || { base: "#B19AFF", hover: "#9B87F5" };
 
 // Helper para decidir cor do fundo do carrossel e hover dos botões
 const solidBackgroundColors: Record<string, string> = {
@@ -37,14 +48,17 @@ interface StoryProps {
 // Utilitário para pegar a cor viva do topo do card usando a chave do bgColor
 const getHexColor = (bgColor: string): string => solidBackgroundColors[bgColor] || "#B19AFF";
 
-// Nova classe utilitária para hover customizado no botão
-const buttonDynamicStyle = `
+// Nova style global para colorir botões de acordo com cada card, incluindo hover
+const buttonColorStyle = `
   .story-cta-btn {
-    transition: background 0.2s, color 0.2s;
-  }
-  .story-cta-btn:hover {
-    background: var(--hover-bg, #B19AFF) !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     color: #fff !important;
+  }
+  .story-cta-btn:hover,
+  .story-cta-btn:focus {
+    background: var(--btn-hover-bg, #9B87F5) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.08);
   }
 `;
 
@@ -62,7 +76,7 @@ const StoryCard: React.FC<StoryProps> = ({
     .split(' ')
     .map(part => part[0])
     .join('');
-  const hoverHex = getHexColor(bgColor);
+  const { base, hover } = getButtonColors(bgColor);
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -83,7 +97,6 @@ const StoryCard: React.FC<StoryProps> = ({
 
         <div className="my-4">
           <p className="text-lg italic mb-6">"{quote}"</p>
-          
           {extendedQuote && (
             <>
               <Separator className="my-4" />
@@ -108,13 +121,11 @@ const StoryCard: React.FC<StoryProps> = ({
           <Link to={`/historias/${id}`}>
             <Button
               variant="outline"
-              className="w-full mt-2 font-semibold border-0 story-cta-btn bg-eixo-purple text-white"
-              style={{ 
-                // Usar cor correspondente do topo do card
-                // Note: Button inicia como roxo padrão, mas sempre no hover troca para a cor correta do card
-                // para cada card, a style inline define o valor hex correto
-                // (bg-eixo-purple é fallback pré hover)
-                ["--hover-bg" as any]: hoverHex
+              className="w-full mt-2 font-semibold border-0 story-cta-btn"
+              style={{
+                background: base,
+                color: "#fff",
+                ["--btn-hover-bg" as any]: hover,
               }}
             >
               <span>Conheça mais</span>
@@ -127,11 +138,11 @@ const StoryCard: React.FC<StoryProps> = ({
   );
 };
 
-// Adiciona a style global só uma vez por segurança
-if (typeof document !== "undefined" && !document.getElementById("button-dynamic-style")) {
+// Aplicar nova style global para botões dinâmicos só uma vez
+if (typeof document !== "undefined" && !document.getElementById("button-color-style")) {
   const style = document.createElement("style");
-  style.id = "button-dynamic-style";
-  style.innerHTML = buttonDynamicStyle;
+  style.id = "button-color-style";
+  style.innerHTML = buttonColorStyle;
   document.head.appendChild(style);
 }
 
