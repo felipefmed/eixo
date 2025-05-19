@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
@@ -49,8 +48,15 @@ const StoryCard: React.FC<StoryProps> = ({
     .map(part => part[0])
     .join('');
 
-  // Obter cor bg hexadecimal para usar no hover
-  const cardColor = solidBackgroundColors[bgColor] || "bg-[#B19AFF]";
+  // Mapeamento para hover color mais vibrante (usando Tailwind + bg personalizada se necessário)
+  const hoverBgColors: Record<string, string> = {
+    "bg-eixo-lightPurple": "hover:bg-eixo-purple",
+    "bg-eixo-lightBlue": "hover:bg-[#1EAEDB]",
+    "bg-eixo-lightGreen": "hover:bg-[#5EE2A0]",
+    "bg-eixo-yellow": "hover:bg-[#FFD875]",
+  };
+  // Usa classe CSS padrão se não encontrado
+  const hoverClass = hoverBgColors[bgColor] || "hover:bg-eixo-purple";
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -95,22 +101,9 @@ const StoryCard: React.FC<StoryProps> = ({
           )}
           <Link to={`/historias/${id}`}>
             <Button 
-              variant="outline" 
-              className={`w-full mt-2 font-semibold border-0 text-white bg-eixo-purple transition-colors duration-300 ease-in-out
-                ${cardColor}
-                hover:${cardColor} hover:text-white`}
-              style={{
-                backgroundColor: "transparent",
-                color: "rgb(177,154,255)",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = solidBackgroundColors[bgColor] || "#B19AFF";
-                e.currentTarget.style.color = "#fff";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = "rgb(177,154,255)";
-              }}
+              variant="outline"
+              className={`w-full mt-2 font-semibold border-0 transition-colors duration-300 ease-in-out bg-eixo-purple text-white ${hoverClass}`}
+              // Remove estilo inline
             >
               <span>Conheça mais</span>
               <ArrowRight size={16} className="ml-2" />
@@ -317,4 +310,3 @@ const Historias = () => {
 };
 
 export default Historias;
-
