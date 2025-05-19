@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,14 @@ import {
   CarouselNext,
   CarouselPrevious 
 } from "@/components/ui/carousel";
+
+// Helper para decidir cor do fundo do carrossel e hover dos botões
+const solidBackgroundColors: Record<string, string> = {
+  "bg-eixo-lightPurple": "bg-[#B19AFF]", // roxo forte
+  "bg-eixo-lightBlue": "bg-[#1EAEDB]",   // azul vibrante
+  "bg-eixo-lightGreen": "bg-[#5EE2A0]",  // verde vibrante
+  "bg-eixo-yellow": "bg-[#FFD875]",      // amarelo vibrante
+};
 
 interface StoryProps {
   id: string;
@@ -40,7 +49,8 @@ const StoryCard: React.FC<StoryProps> = ({
     .map(part => part[0])
     .join('');
 
-  const colorName = bgColor.replace('bg-', '');
+  // Obter cor bg hexadecimal para usar no hover
+  const cardColor = solidBackgroundColors[bgColor] || "bg-[#B19AFF]";
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -83,11 +93,24 @@ const StoryCard: React.FC<StoryProps> = ({
               ))}
             </div>
           )}
-          
           <Link to={`/historias/${id}`}>
             <Button 
               variant="outline" 
-              className={`w-full mt-2 border-${colorName} text-${colorName} hover:bg-${colorName} hover:text-white transition-colors duration-300 ease-in-out`}
+              className={`w-full mt-2 font-semibold border-0 text-white bg-eixo-purple transition-colors duration-300 ease-in-out
+                ${cardColor}
+                hover:${cardColor} hover:text-white`}
+              style={{
+                backgroundColor: "transparent",
+                color: "rgb(177,154,255)",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundColor = solidBackgroundColors[bgColor] || "#B19AFF";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = "rgb(177,154,255)";
+              }}
             >
               <span>Conheça mais</span>
               <ArrowRight size={16} className="ml-2" />
@@ -100,20 +123,8 @@ const StoryCard: React.FC<StoryProps> = ({
 };
 
 const FeaturedStory = ({ story }: { story: StoryProps }) => (
-  <div className="relative w-full overflow-hidden rounded-2xl">
-    <div className="absolute inset-0 z-0">
-      <img 
-        src={story.imageUrl} 
-        alt={story.name}
-        className="w-full h-full object-cover opacity-20"
-        onError={(e) => {
-          const target = e.target as HTMLImageElement;
-          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
-        }}
-      />
-      <div className={`absolute inset-0 bg-${story.bgColor.replace('bg-', '')} bg-opacity-30 mix-blend-multiply`}></div>
-    </div>
-    
+  <div className={`relative w-full overflow-hidden rounded-2xl ${solidBackgroundColors[story.bgColor] || "bg-[#B19AFF]"}`} >
+    {/* Apenas cor sólida no fundo */}
     <div className="relative z-10 p-6 md:p-10">
       <div className="flex flex-col md:flex-row gap-8 items-center">
         <div className="w-full md:w-1/3">
@@ -129,9 +140,9 @@ const FeaturedStory = ({ story }: { story: StoryProps }) => (
             />
           </div>
         </div>
-        <div className="w-full md:w-2/3">
+        <div className="w-full md:w-2/3 text-white">
           <h2 className="text-3xl font-bold mb-4">{story.name}</h2>
-          <p className="text-lg text-gray-600 mb-2">{story.role}</p>
+          <p className="text-lg mb-2">{story.role}</p>
           
           <div className="mt-6">
             <p className="text-xl italic mb-6">"{story.quote}"</p>
@@ -143,14 +154,14 @@ const FeaturedStory = ({ story }: { story: StoryProps }) => (
           {story.tags && story.tags.length > 0 && (
             <div className="mt-8 flex flex-wrap gap-3">
               {story.tags.map((tag, idx) => (
-                <span key={idx} className={`${story.bgColor} px-3 py-1 rounded-full text-sm`}>{tag}</span>
+                <span key={idx} className={`px-3 py-1 rounded-full text-sm bg-white/20`}>{tag}</span>
               ))}
             </div>
           )}
           
           <div className="mt-6">
             <Link to={`/historias/${story.id}`}>
-              <Button className="flex items-center gap-2 bg-eixo-purple hover:bg-violet-500 transition-colors">
+              <Button className="flex items-center gap-2 bg-white/20 hover:bg-white/40 text-white font-bold transition-colors">
                 Conheça mais
                 <ArrowRight size={16} />
               </Button>
@@ -255,7 +266,7 @@ const Historias = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-6 py-16">
+      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] max-w-none bg-white py-16 px-0">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Histórias Reais</h1>
           <p className="text-lg text-gray-600 mb-10">
@@ -266,9 +277,9 @@ const Historias = () => {
         </div>
         
         <section className="mb-24">
-          {/* Featured Stories Carousel with horizontal animation */}
+          {/* Carousel agora está full width (fora do container padrão) */}
           <Carousel 
-            className="w-full max-w-5xl mx-auto"
+            className="w-screen max-w-none mx-auto"
             opts={{
               align: "start",
               loop: true,
@@ -276,7 +287,7 @@ const Historias = () => {
           >
             <CarouselContent className="cursor-grab active:cursor-grabbing">
               {stories.map((story, index) => (
-                <CarouselItem key={story.id} className="transition-transform duration-500">
+                <CarouselItem key={story.id} className="transition-transform duration-500 px-4">
                   <FeaturedStory story={story} />
                 </CarouselItem>
               ))}
@@ -288,7 +299,7 @@ const Historias = () => {
           </Carousel>
         </section>
         
-        <section className="mb-16">
+        <section className="mb-16 max-w-7xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-10 text-center">Outras Histórias</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stories.map((story, index) => (
@@ -306,3 +317,4 @@ const Historias = () => {
 };
 
 export default Historias;
+
