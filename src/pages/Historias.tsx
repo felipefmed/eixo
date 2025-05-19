@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
@@ -16,10 +17,10 @@ import {
 
 // Helper para decidir cor do fundo do carrossel e hover dos botões
 const solidBackgroundColors: Record<string, string> = {
-  "bg-eixo-lightPurple": "bg-[#B19AFF]", // roxo forte
-  "bg-eixo-lightBlue": "bg-[#1EAEDB]",   // azul vibrante
-  "bg-eixo-lightGreen": "bg-[#5EE2A0]",  // verde vibrante
-  "bg-eixo-yellow": "bg-[#FFD875]",      // amarelo vibrante
+  "bg-eixo-lightPurple": "#B19AFF", // roxo forte
+  "bg-eixo-lightBlue": "#1EAEDB",   // azul vibrante
+  "bg-eixo-lightGreen": "#5EE2A0",  // verde vibrante
+  "bg-eixo-yellow": "#FFD875",      // amarelo vibrante
 };
 
 interface StoryProps {
@@ -32,6 +33,20 @@ interface StoryProps {
   extendedQuote?: string;
   tags?: string[];
 }
+
+// Utilitário para pegar a cor viva do topo do card usando a chave do bgColor
+const getHexColor = (bgColor: string): string => solidBackgroundColors[bgColor] || "#B19AFF";
+
+// Nova classe utilitária para hover customizado no botão
+const buttonDynamicStyle = `
+  .story-cta-btn {
+    transition: background 0.2s, color 0.2s;
+  }
+  .story-cta-btn:hover {
+    background: var(--hover-bg, #B19AFF) !important;
+    color: #fff !important;
+  }
+`;
 
 const StoryCard: React.FC<StoryProps> = ({
   id,
@@ -47,16 +62,7 @@ const StoryCard: React.FC<StoryProps> = ({
     .split(' ')
     .map(part => part[0])
     .join('');
-
-  // Mapeamento para hover color mais vibrante (usando Tailwind + bg personalizada se necessário)
-  const hoverBgColors: Record<string, string> = {
-    "bg-eixo-lightPurple": "hover:bg-eixo-purple",
-    "bg-eixo-lightBlue": "hover:bg-[#1EAEDB]",
-    "bg-eixo-lightGreen": "hover:bg-[#5EE2A0]",
-    "bg-eixo-yellow": "hover:bg-[#FFD875]",
-  };
-  // Usa classe CSS padrão se não encontrado
-  const hoverClass = hoverBgColors[bgColor] || "hover:bg-eixo-purple";
+  const hoverHex = getHexColor(bgColor);
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -100,10 +106,16 @@ const StoryCard: React.FC<StoryProps> = ({
             </div>
           )}
           <Link to={`/historias/${id}`}>
-            <Button 
+            <Button
               variant="outline"
-              className={`w-full mt-2 font-semibold border-0 transition-colors duration-300 ease-in-out bg-eixo-purple text-white ${hoverClass}`}
-              // Remove estilo inline
+              className="w-full mt-2 font-semibold border-0 story-cta-btn bg-eixo-purple text-white"
+              style={{ 
+                // Usar cor correspondente do topo do card
+                // Note: Button inicia como roxo padrão, mas sempre no hover troca para a cor correta do card
+                // para cada card, a style inline define o valor hex correto
+                // (bg-eixo-purple é fallback pré hover)
+                ["--hover-bg" as any]: hoverHex
+              }}
             >
               <span>Conheça mais</span>
               <ArrowRight size={16} className="ml-2" />
@@ -115,8 +127,16 @@ const StoryCard: React.FC<StoryProps> = ({
   );
 };
 
+// Adiciona a style global só uma vez por segurança
+if (typeof document !== "undefined" && !document.getElementById("button-dynamic-style")) {
+  const style = document.createElement("style");
+  style.id = "button-dynamic-style";
+  style.innerHTML = buttonDynamicStyle;
+  document.head.appendChild(style);
+}
+
 const FeaturedStory = ({ story }: { story: StoryProps }) => (
-  <div className={`relative w-full overflow-hidden rounded-2xl ${solidBackgroundColors[story.bgColor] || "bg-[#B19AFF]"}`} >
+  <div className={`relative w-full overflow-hidden rounded-2xl`} style={{ background: getHexColor(story.bgColor) }}>
     {/* Apenas cor sólida no fundo */}
     <div className="relative z-10 p-6 md:p-10">
       <div className="flex flex-col md:flex-row gap-8 items-center">
