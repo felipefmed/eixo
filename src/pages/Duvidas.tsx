@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -6,12 +5,14 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useChatState } from '../components/ChatButton';
 
 const Duvidas = () => {
   const [aiQuestion, setAiQuestion] = useState('');
   const [aiAnswer, setAiAnswer] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const openChat = useChatState.openChat;
   
   const handleAskAI = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -216,7 +217,11 @@ const Duvidas = () => {
               Se você não encontrou resposta para suas dúvidas aqui, entre em 
               contato conosco ou consulte um profissional de saúde.
             </p>
-            <button className="btn btn-primary">
+            <button 
+              className="btn btn-primary"
+              type="button"
+              onClick={() => openChat()}
+            >
               Entre em contato
             </button>
           </div>
