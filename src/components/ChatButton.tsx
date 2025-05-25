@@ -66,7 +66,7 @@ const ChatButton = () => {
           onClick={() => setIsOpen(prev => !prev)}
           style={{ width: '64px', height: '64px' }} // Making the chat button bigger
         >
-          {isOpen ? <X size={32} /> : <MessageCircle size={32} />}
+          {isOpen ? <X size={48} /> : <MessageCircle size={48} />}
         </Button>
       </PopoverTrigger>
       <PopoverContent 
