@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependency directories
 node_modules
 dist
 dist-ssr
@@ -22,3 +23,27 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# -------------------------------------------------------------------
+# NEW ADDITIONS FOR BUN / PACKAGE LOCK FILES
+# -------------------------------------------------------------------
+
+# Bun lock file (binary format) - always ignore this one
+bun.lockb
+
+# npm lock file - ignore if you are primarily using Bun or Yarn
+package-lock.json
+
+# Yarn lock file - ignore if you are primarily using Bun or npm
+yarn.lock
+
+# pnpm lock file - ignore if you are primarily using Bun, npm or Yarn
+pnpm-lock.yaml
+
+# .bun/ directory - Bun's internal cache
+.bun/
+
+# Other potential temporary/cache files
+.env
+.env.local
+.env.*.local

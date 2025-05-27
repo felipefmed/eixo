@@ -160,3 +160,43 @@ a, button {
 .navbar-link {
   @apply hover:text-eixo-purple hover:underline underline-offset-4;
 }
+
+/* Definição dos keyframes para a animação de brilho */
+@keyframes glowing-eixo {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* Contêiner que VAI RECEBER A ANIMAÇÃO. Este NÃO terá overflow: hidden */
+.eixo-chat-button-animation-wrapper {
+    position: relative; /* Necessário para que o ::before/::after funcionem */
+    width: 64px; /* O mesmo tamanho do seu botão */
+    height: 64px; /* O mesmo tamanho do seu botão */
+    border-radius: 9999px; /* Para manter o formato circular */
+    /* background-color: var(--eixo-purple, #800080); */ /* Não precisamos do background aqui, pois o botão terá */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pseudo-elemento ::before para o efeito de brilho */
+.eixo-chat-button-animation-wrapper::before {
+    content: '';
+    background: linear-gradient(45deg, #769DF0, #5CE5E0, #45E586, #FFDA64, #FF7A95, #FFA6EE); /* Seu gradiente arco-íris */
+    position: absolute;
+    top: -10px; /* Expande para fora */
+    left: -10px; /* Expande para fora */
+    background-size: 400%;
+    z-index: -1; /* Fica abaixo do botão principal */
+    filter: blur(8px);
+    width: calc(100% + 20px); /* Aumenta a largura para o brilho */
+    height: calc(100% + 20px); /* Aumenta a altura para o brilho */
+    animation: glowing-eixo 20s linear infinite;
+    opacity: 1; /* Sempre visível quando colapsado */
+    border-radius: inherit; /* Herda o border-radius do pai */
+}
+
+/* Pseudo-elemento ::after para cobrir o gradiente interno e deixar o fundo do botão roxo */
+/* Este ::after não é mais necessário aqui, pois o background do botão será suficiente */
+/* Se houver algum problema de transparência, podemos reintroduzi-lo no botão */

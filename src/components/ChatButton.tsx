@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -60,17 +59,31 @@ const ChatButton = () => {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button 
-          id="chat"
-          className="fixed bottom-6 right-6 rounded-full p-6 shadow-lg bg-eixo-purple text-white hover:bg-eixo-purple/90"
-          onClick={() => setIsOpen(prev => !prev)}
-          style={{ width: '64px', height: '64px' }} // Making the chat button bigger
+        {/* NOVA DIV EXTERNA para posicionamento fixo e z-index */}
+        <div
+          className="fixed bottom-10 right-10 z-50" // shadow-lg aqui, ou no botão, dependendo do que você quer sombrear
+          style={{ width: '64px', height: '64px' }} // Define o tamanho do espaço ocupado pelo botão
         >
-          {isOpen ? <X size={48} /> : <MessageCircle size={48} />}
-        </Button>
+          {/* DIV INTERNA para a animação. Ela é relativa para os pseudo-elementos. */}
+          <div
+            className={`
+              relative w-full h-full rounded-full flex items-center justify-center
+              ${!isOpen ? 'eixo-chat-button-animation-wrapper' : 'bg-eixo-purple'}
+            `}
+          >
+            {/* O BOTÃO AGORA TEM SEU PRÓPRIO BACKGROUND E É O FILHO DIRETO */}
+            <Button
+              id="chat"
+              className="w-full h-full rounded-full p-6 text-white hover:bg-eixo-purple/90 bg-eixo-purple" /* Adicionado bg-eixo-purple aqui novamente */
+              onClick={() => setIsOpen(prev => !prev)}
+            > 
+              {isOpen ? <X className="!size-7" /> : <MessageCircle className="!size-7" />}
+            </Button>
+          </div>
+        </div>
       </PopoverTrigger>
       <PopoverContent 
-        className="w-80 sm:w-96 p-0 border-2 border-eixo-purple" 
+        className="w-80 sm:w-96 p-0 border-2 border-eixo-purple shadow-lg" 
         side="top" 
         align="end"
       >
