@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
@@ -15,7 +14,8 @@ const Index = () => {
     openChat();
   };
 
-  return <Layout>
+  return (
+    <Layout>
       {/* Hero Section */}
       <section className="relative bg-white py-24 md:py-32 px-6">
         <div className="container mx-auto">
@@ -23,8 +23,7 @@ const Index = () => {
             <div className="w-full md:w-1/2 mb-12 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
                 Olá, <br />
-                estamos aqui pra te <br />
-                mostrar que não é o fim.
+                estamos aqui para te mostrar que não é o fim.
               </h1>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8">
                 <a 
@@ -36,10 +35,10 @@ const Index = () => {
                 </a>
                 <div className="flex flex-wrap gap-4 mt-4 sm:mt-0">
                   <Link to="/projeto" className="btn btn-primary">
-                    Conheça o projeto
+                    Entenda o Projeto
                   </Link>
                   <Link to="/duvidas" className="btn btn-secondary">
-                    Tire suas dúvidas
+                    Tire suas Dúvidas
                   </Link>
                 </div>
               </div>
@@ -66,23 +65,43 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 uppercase">Sobre o Eixo</h2>
           <p className="text-lg md:text-xl max-w-3xl mx-auto mb-10">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo quis nostris 
-            nibh cras. Ut pharetra sit amet aliquam id diam.
+            O Eixo é um projeto dedicado a oferecer apoio, informação de qualidade e um espaço seguro para pessoas que vivem com HIV,
+            seus amigos e familiares. Nosso objetivo é combater a desinformação, reduzir o estigma e mostrar que é possível viver uma vida plena e feliz com HIV.
           </p>
           <Link to="/projeto" className="btn btn-primary">
-            Saiba mais
+            Conheça Mais
           </Link>
         </div>
       </section>
 
       {/* Services Section */}
       <section className="bg-white">
-        <FeatureSection title="Encontrar locais de apoio" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/encontre-apoio" imagePosition="left" />
+        <FeatureSection
+          title="Encontre apoio perto de você"
+          description="Descubra organizações e casas de apoio em todo o Brasil. Um lugar seguro para encontrar acolhimento e suporte especializado."
+          imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3"
+          buttonText="Buscar ONGs"
+          buttonLink="/encontre-apoio"
+          imagePosition="left"
+        />
 
-        <FeatureSection title="Conhecer histórias" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/historias" imagePosition="right" />
+        <FeatureSection
+          title="Inspire-se com histórias de vida"
+          description="Leia relatos reais de pessoas que vivem com HIV, compartilhando suas jornadas de superação, aprendizado e esperança."
+          imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3"
+          buttonText="Ver Histórias"
+          buttonLink="/historias"
+          imagePosition="right"
+        />
 
-        <FeatureSection title="Sanar dúvidas" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna alique." imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3" buttonText="Saiba mais" buttonLink="/duvidas" imagePosition="left" />
+        <FeatureSection
+          title="Tire todas as suas dúvidas"
+          description="Acesse informações confiáveis e respostas claras sobre HIV, tratamento, prevenção e direitos. Conte também com nosso chat de apoio."
+          imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3"
+          buttonText="Ver Perguntas"
+          buttonLink="/duvidas"
+          imagePosition="left"
+        />
       </section>
 
       {/* Testimonials Section */}
@@ -105,6 +124,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
 export default Index;

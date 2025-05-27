@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "../components/Layout";
 import ProjectTextSection from "../components/ProjectTextSection";
@@ -10,7 +9,7 @@ const Projeto = () => {
     <Layout>
       <div className="container mx-auto px-6 py-16">
         <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">
-          O Projeto
+          Conheça o Eixo
         </h1>
         <ProjectTextSection />
         <ProjectMission />

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
@@ -149,8 +148,8 @@ const StoryDetail = () => {
     return (
       <Layout>
         <div className="container mx-auto px-6 py-16 text-center">
-          <h1 className="text-3xl font-bold mb-6">História não encontrada</h1>
-          <Button onClick={() => navigate('/historias')}>Voltar para Histórias</Button>
+          <h1 className="text-3xl font-bold mb-6">Essa história não foi encontrada.</h1>
+          <Button onClick={() => navigate('/historias')}>Ver Todas as Histórias</Button>
         </div>
       </Layout>
     );
@@ -165,7 +164,7 @@ const StoryDetail = () => {
           className="mb-8 flex items-center gap-2"
         >
           <ArrowLeft size={16} />
-          <span>Voltar para histórias</span>
+          <span>Voltar para as histórias</span>
         </Button>
         
         <div className="max-w-4xl mx-auto">

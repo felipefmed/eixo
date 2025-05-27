@@ -16,7 +16,7 @@ const EncontreApoio = () => {
         <div className="container mx-auto px-6 py-20 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Encontre ONGs<br />e casas de apoio.
+              Encontre o apoio<br />que você precisa.
             </h1>
             <ONGSearchBar cidade={cidade} setCidade={setCidade} />
           </div>
@@ -46,10 +46,11 @@ const EncontreApoio = () => {
           <ONGList />
           <div className="text-center mt-12">
             <p className="text-lg mb-6 max-w-2xl mx-auto">
-              Quer incluir sua organização em nosso diretório ou reportar informações incorretas?
+              Sua organização oferece apoio e quer fazer parte da nossa rede?
+              Ou encontrou algo que precisa ser atualizado?
             </p>
             <button className="btn btn-primary">
-              Entre em contato
+              Fale Conosco
             </button>
           </div>
         </div>

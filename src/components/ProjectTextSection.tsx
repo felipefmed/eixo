@@ -4,20 +4,14 @@ import React from "react";
 const ProjectTextSection = () => (
   <div className="max-w-3xl mx-auto">
     <p className="mb-6 text-lg">
-      O Eixo nasceu da necessidade de fornecer informação confiável e apoio 
-      para pessoas que acabaram de descobrir que vivem com HIV. Nosso objetivo 
-      é combater o estigma, promover o diálogo aberto e mostrar que um 
-      diagnóstico de HIV não é o fim, mas um novo capítulo.
+      O Eixo nasceu para ser um ponto de apoio e informação de confiança para quem acabou de receber o diagnóstico de HIV ou busca mais conhecimento.
+      Nosso grande objetivo é lutar contra o preconceito, incentivar a conversa aberta e mostrar que um diagnóstico de HIV é o começo de um novo capítulo, não o fim.
     </p>
     <p className="mb-6 text-lg">
-      Nossa equipe multidisciplinar inclui profissionais de saúde, pessoas 
-      que vivem com HIV e especialistas em comunicação em saúde, todos 
-      comprometidos em criar um espaço seguro e informativo.
+      Somos uma equipe dedicada, com profissionais de saúde, pessoas que vivem com HIV e especialistas em comunicação. Juntos, estamos comprometidos em construir um espaço seguro, acolhedor e cheio de informações úteis para você.
     </p>
     <p className="mb-10 text-lg">
-      Trabalhamos em colaboração com ONGs e serviços de saúde para garantir 
-      que nossas informações sejam precisas e atualizadas, e para conectar 
-      as pessoas aos recursos necessários para seu tratamento e bem-estar.
+      Trabalhamos lado a lado com ONGs e serviços de saúde. Assim, garantimos que tudo o que você encontra aqui é preciso e atualizado, e que podemos conectar você aos melhores recursos para seu tratamento e bem-estar.
     </p>
   </div>
 );

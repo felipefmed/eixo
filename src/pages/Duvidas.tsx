@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "../components/Layout";
 import AIQuestionBox from "../components/AIQuestionBox";
@@ -10,11 +9,12 @@ const Duvidas = () => {
     <Layout>
       <div className="container mx-auto px-6 py-16">
         <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">
-          Dúvidas Frequentes
+          Perguntas e Respostas
         </h1>
         <p className="text-lg text-center max-w-3xl mx-auto mb-12">
-          Respostas para as perguntas mais comuns sobre HIV, tratamentos, 
-          prevenção e como viver bem após o diagnóstico.
+          Aqui você encontra as respostas para as perguntas mais importantes sobre HIV.
+          Falamos sobre tratamento, prevenção e como ter uma vida plena após o diagnóstico.
+          Estamos aqui para te ajudar!
         </p>
         <div className="max-w-3xl mx-auto mb-16">
           <AIQuestionBox />
