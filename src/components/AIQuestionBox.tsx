@@ -49,7 +49,7 @@ const AIQuestionBox: React.FC = () => {
       <p className="mb-6">
         Tem uma pergunta específica? Nosso assistente de IA pode ajudar a responder suas dúvidas sobre HIV e saúde.
       </p>
-      <form onSubmit={handleAskAI} className="flex gap-4 mb-6">
+      <form onSubmit={handleAskAI} className="flex gap-4 mb-6 items-center">
         <div className="relative flex-grow">
           <Input
             type="text"

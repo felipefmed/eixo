@@ -141,9 +141,9 @@ const stories: Record<string, StoryData> = {
 const StoryDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  
+
   const story = id ? stories[id] : null;
-  
+
   if (!story) {
     return (
       <Layout>
@@ -157,8 +157,9 @@ const StoryDetail = () => {
 
   return (
     <Layout>
+      {/* AQUI ESTÁ A LINHA QUE VAMOS AJUSTAR O PADDING SUPERIOR */}
       <div className="container mx-auto px-6 py-16">
-        <Button 
+        <Button
           variant="outline"
           onClick={() => navigate('/historias')}
           className="mb-8 flex items-center gap-2"
@@ -166,14 +167,14 @@ const StoryDetail = () => {
           <ArrowLeft size={16} />
           <span>Voltar para as histórias</span>
         </Button>
-        
+
         <div className="max-w-4xl mx-auto">
           <div className={`h-4 ${story.bgColor} rounded-t-md`}></div>
           <div className="bg-white shadow-xl rounded-b-md p-8">
             <div className="flex flex-col md:flex-row md:items-center gap-8 mb-10">
               <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg mx-auto md:mx-0">
-                <img 
-                  src={story.imageUrl} 
+                <img
+                  src={story.imageUrl}
                   alt={story.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -182,29 +183,29 @@ const StoryDetail = () => {
                   }}
                 />
               </div>
-              
+
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">{story.name}</h1>
                 <p className="text-gray-600 mt-2 text-center md:text-left">{story.role}</p>
               </div>
             </div>
-            
+
             <div className="mb-8">
               <p className="text-2xl italic font-light mb-8">"{story.quote}"</p>
-              
+
               <Separator className="my-8" />
-              
+
               <div className="space-y-6">
                 {story.fullStory.map((paragraph, index) => (
                   <p key={index} className="text-lg leading-relaxed">{paragraph}</p>
                 ))}
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-2 mt-10">
               {story.tags.map((tag, index) => (
-                <span 
-                  key={index} 
+                <span
+                  key={index}
                   className={`px-4 py-2 rounded-full text-sm font-medium ${story.bgColor}`}
                 >
                   {tag}

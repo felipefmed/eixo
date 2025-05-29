@@ -6,6 +6,7 @@ import StoryCard from '../components/StoryCard';
 import FeaturedStory from '../components/FeaturedStory';
 import ShareStorySection from '../components/ShareStorySection';
 
+// ... (seus dados de 'stories' permanecem os mesmos) ...
 const stories = [
   {
     id: 'gabriel-estrela',
@@ -72,7 +73,7 @@ const stories = [
     quote: 'É importante falar: viver com HIV hoje não é como nos anos 80 ou 90. A medicina avançou muito e podemos ter uma vida normal, com qualidade e longevidade.',
     fullStory: [
       'Como médico infectologista, tenho acompanhado a evolução dos tratamentos nos últimos 30 anos. O que vemos hoje é uma revolução na qualidade de vida dos pacientes soropositivos.',
-      'Comecei minha carreira médica no início da epidemia de AIDS, nos anos 80. Naquela época, o diagnóstico de HIV era praticamente uma sentença de morte. Não tínhamos tratamentos eficazes e perdíamos pacientes diariamente.',
+      'Comecei minha carreira médica no início da epidemia de AIDS, nos 80. Naquela época, o diagnóstico de HIV era praticamente uma sentença de morte. Não tínhamos tratamentos eficazes e perdíamos pacientes diariamente.',
       'A introdução da terapia antirretroviral de alta potência em meados dos anos 90 foi um divisor de águas. Pela primeira vez, vimos pacientes se recuperando e voltando a ter uma vida produtiva. Desde então, os avanços não pararam.',
       'Hoje, temos medicamentos que combinam vários princípios ativos em um único comprimido diário, com mínimos efeitos colaterais. A expectativa de vida de uma pessoa com HIV em tratamento é praticamente igual à da população geral.',
       'Como médico e também como ativista, luto pela universalização do acesso ao tratamento. No Brasil, temos um dos melhores programas de combate ao HIV do mundo, com distribuição gratuita de medicamentos pelo SUS.',
@@ -112,25 +113,28 @@ const Historias = () => (
         </p>
         <Separator className="max-w-xs mx-auto" />
       </div>
-      <section className="mb-24">
-        <Carousel 
-          className="w-screen max-w-none mx-auto"
+      <section className="mb-24 relative"> {/* Adicionado 'relative' aqui para posicionar as setas */}
+        <Carousel
+          // Removido 'w-screen max-w-none mx-auto' do Carousel, pois a section pai já está controlando a largura total.
+          // Adicionado 'h-full' para garantir que o Carousel ocupe a altura total do seu conteúdo.
+          className="h-full" 
           opts={{
             align: "start",
             loop: true,
           }}
         >
-          <CarouselContent className="cursor-grab active:cursor-grabbing">
+          {/* Adicionado h-full para CarouselContent para que ele ocupe a altura total */}
+          <CarouselContent className="cursor-grab active:cursor-grabbing h-full"> 
             {stories.map((story, index) => (
-              <CarouselItem key={story.id} className="transition-transform duration-500 px-4">
+              // Adicionado 'h-full' ao CarouselItem para que ele force a altura do FeaturedStory
+              <CarouselItem key={story.id} className="transition-transform duration-500 h-full"> 
                 <FeaturedStory story={story} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-center gap-4 mt-6">
-            <CarouselPrevious className="relative static translate-y-0 left-0 hover:bg-eixo-purple hover:text-white transition-colors" />
-            <CarouselNext className="relative static translate-y-0 right-0 hover:bg-eixo-purple hover:text-white transition-colors" />
-          </div>
+          {/* Posicionamento das setas ajustado para dentro da section, no centro vertical */}
+          <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-4 z-10 hover:bg-eixo-purple hover:text-white transition-colors" />
+          <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-4 z-10 hover:bg-eixo-purple hover:text-white transition-colors" />
         </Carousel>
       </section>
       <section className="mb-16 max-w-7xl mx-auto px-6">
