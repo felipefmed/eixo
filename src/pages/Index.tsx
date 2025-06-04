@@ -108,13 +108,42 @@ const Index = () => {
       <section className="bg-gray-50 py-20 px-6">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <TestimonialCard quote="É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura." name="Gabriel Estrela" role="Criador de conteúdo" imageUrl="https://i.pravatar.cc/150?u=gabriel" bgColor="bg-eixo-yellow" />
+            {/* Adicionado o 'id' para cada TestimonialCard */}
+            <TestimonialCard 
+              id="gabriel-estrela" // ID adicionado
+              quote="É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura." 
+              name="Gabriel Estrela" 
+              role="Criador de conteúdo" 
+              imageUrl="https://i.pravatar.cc/150?u=gabriel" 
+              bgColor="bg-eixo-yellow" 
+            />
             
-            <TestimonialCard quote="Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos." name="Tamillys Lírio" role="Psicóloga e ativista" imageUrl="https://i.pravatar.cc/150?u=tamillys" bgColor="bg-eixo-lightBlue" />
+            <TestimonialCard 
+              id="tamillys-lirio" // ID adicionado
+              quote="Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos." 
+              name="Tamillys Lírio" 
+              role="Psicóloga e ativista" 
+              imageUrl="https://i.pravatar.cc/150?u=tamillys" 
+              bgColor="bg-eixo-lightBlue" 
+            />
 
-            <TestimonialCard quote="É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real." name="Silvia Almeira" role="Ativista e consultora" imageUrl="https://i.pravatar.cc/150?u=silvia" bgColor="bg-eixo-lightGreen" />
+            <TestimonialCard 
+              id="silvia-almeida" // ID adicionado
+              quote="É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real." 
+              name="Silvia Almeira" 
+              role="Ativista e consultora" 
+              imageUrl="https://i.pravatar.cc/150?u=silvia" 
+              bgColor="bg-eixo-lightGreen" 
+            />
 
-            <TestimonialCard quote="O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo." name="João Netto" role="Criador de conteúdo" imageUrl="https://i.pravatar.cc/150?u=joao" bgColor="bg-eixo-lightPurple" />
+            <TestimonialCard 
+              id="joao-netto" // ID adicionado
+              quote="O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo." 
+              name="João Netto" 
+              role="Criador de conteúdo" 
+              imageUrl="https://i.pravatar.cc/150?u=joao" 
+              bgColor="bg-eixo-lightPurple" 
+            />
           </div>
           
           <div className="text-center mt-12">
@@ -127,4 +156,5 @@ const Index = () => {
     </Layout>
   );
 };
+
 export default Index;

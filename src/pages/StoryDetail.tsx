@@ -14,6 +14,7 @@ interface StoryData {
   fullStory: string[];
   bgColor: string;
   tags: string[];
+  publishedDate: string; // Adicionado
 }
 
 const stories: Record<string, StoryData> = {
@@ -32,7 +33,8 @@ const stories: Record<string, StoryData> = {
       'Minha mensagem para quem acabou de descobrir o diagnóstico é: respire fundo, busque informação de qualidade, comece o tratamento o quanto antes, e saiba que você vai ficar bem. HIV hoje é uma condição crônica controlável, não uma sentença de morte como era nos anos 80.'
     ],
     bgColor: 'bg-eixo-lightPurple',
-    tags: ['Visibilidade', 'Educação', 'Indetectável']
+    tags: ['Visibilidade', 'Educação', 'Indetectável'],
+    publishedDate: '2023-10-26' 
   },
   'tamillys-lirio': {
     id: 'tamillys-lirio',
@@ -49,7 +51,8 @@ const stories: Record<string, StoryData> = {
       'Hoje, além do consultório, participo de grupos de apoio e palestras educativas. Acredito que a informação é a melhor ferramenta para combater o preconceito. Quando as pessoas entendem os fatos sobre o HIV, o medo e a discriminação diminuem.'
     ],
     bgColor: 'bg-eixo-lightBlue',
-    tags: ['Saúde Mental', 'Ativismo', 'Educação']
+    tags: ['Saúde Mental', 'Ativismo', 'Educação'],
+    publishedDate: '2024-01-15' 
   },
   'silvia-almeida': {
     id: 'silvia-almeida',
@@ -66,7 +69,8 @@ const stories: Record<string, StoryData> = {
       'Minha mensagem é direta: uso de preservativo, PrEP e testagem regular são fundamentais. HIV pode afetar qualquer pessoa que tenha vida sexual ativa. A prevenção combinada é o melhor caminho.'
     ],
     bgColor: 'bg-eixo-lightGreen',
-    tags: ['Prevenção', 'Conscientização', 'PrEP']
+    tags: ['Prevenção', 'Conscientização', 'PrEP'],
+    publishedDate: '2023-08-01'
   },
   'joao-netto': {
     id: 'joao-netto',
@@ -83,7 +87,8 @@ const stories: Record<string, StoryData> = {
       'Decidi ser um rosto jovem e positivo para essa causa. Quero mostrar que é possível viver bem com HIV, sem esconder ou se envergonhar. O estigma mata mais que o vírus.'
     ],
     bgColor: 'bg-eixo-lightPurple',
-    tags: ['Indetectável', 'Juventude', 'Redes sociais']
+    tags: ['Indetectável', 'Juventude', 'Redes sociais'],
+    publishedDate: '2024-03-05' 
   },
   'mariana-santos': {
     id: 'mariana-santos',
@@ -100,7 +105,8 @@ const stories: Record<string, StoryData> = {
       'Como professora, acredito na educação como ferramenta de transformação. Por isso, decidi compartilhar minha história, especialmente com outras mulheres grávidas vivendo com HIV. Quero que saibam que maternidade segura é possível.'
     ],
     bgColor: 'bg-eixo-yellow',
-    tags: ['Maternidade', 'Família', 'Gravidez']
+    tags: ['Maternidade', 'Família', 'Gravidez'],
+    publishedDate: '2023-11-01' 
   },
   'carlos-ribeiro': {
     id: 'carlos-ribeiro',
@@ -117,7 +123,8 @@ const stories: Record<string, StoryData> = {
       'Meu maior desafio hoje é combater a desinformação. Mesmo com tantos avanços científicos, ainda vejo pacientes chegando ao consultório com ideias equivocadas e medos baseados em informações desatualizadas sobre o HIV.'
     ],
     bgColor: 'bg-eixo-lightBlue',
-    tags: ['Medicina', 'Tratamento', 'Saúde pública']
+    tags: ['Medicina', 'Tratamento', 'Saúde pública'],
+    publishedDate: '2023-09-20' 
   },
   'paulo-henrique': {
     id: 'paulo-henrique',
@@ -134,7 +141,8 @@ const stories: Record<string, StoryData> = {
       'Como designer, também colaboro criando campanhas educativas que ajudam a disseminar informações corretas sobre prevenção e tratamento. Acredito que a arte e a comunicação são ferramentas poderosas na luta contra o estigma.'
     ],
     bgColor: 'bg-eixo-lightGreen',
-    tags: ['Voluntariado', 'Suporte', 'Aceitação']
+    tags: ['Voluntariado', 'Suporte', 'Aceitação'],
+    publishedDate: '2024-02-10' 
   }
 };
 
@@ -157,8 +165,8 @@ const StoryDetail = () => {
 
   return (
     <Layout>
-      {/* AQUI ESTÁ A LINHA QUE VAMOS AJUSTAR O PADDING SUPERIOR */}
-      <div className="container mx-auto px-6 py-16">
+      {/* O container principal da página de detalhes, agora alinhando o botão e o card */}
+      <div className="max-w-4xl mx-auto px-6 py-16">
         <Button
           variant="outline"
           onClick={() => navigate('/historias')}
@@ -168,52 +176,58 @@ const StoryDetail = () => {
           <span>Voltar para as histórias</span>
         </Button>
 
-        <div className="max-w-4xl mx-auto">
-          <div className={`h-4 ${story.bgColor} rounded-t-md`}></div>
-          <div className="bg-white shadow-xl rounded-b-md p-8">
-            <div className="flex flex-col md:flex-row md:items-center gap-8 mb-10">
-              <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg mx-auto md:mx-0">
-                <img
-                  src={story.imageUrl}
-                  alt={story.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
-                  }}
-                />
-              </div>
-
-              <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">{story.name}</h1>
-                <p className="text-gray-600 mt-2 text-center md:text-left">{story.role}</p>
-              </div>
+        {/* Início do card da história */}
+        <div className={`h-4 ${story.bgColor} rounded-t-md`}></div>
+        <div className="bg-white shadow-xl rounded-b-md p-8">
+          <div className="flex flex-col md:flex-row md:items-center gap-8 mb-10">
+            <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg mx-auto md:mx-0">
+              <img
+                src={story.imageUrl}
+                alt={story.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(story.name)}&size=200&background=B19AFF&color=fff`;
+                }}
+              />
             </div>
 
-            <div className="mb-8">
-              <p className="text-2xl italic font-light mb-8">"{story.quote}"</p>
-
-              <Separator className="my-8" />
-
-              <div className="space-y-6">
-                {story.fullStory.map((paragraph, index) => (
-                  <p key={index} className="text-lg leading-relaxed">{paragraph}</p>
-                ))}
-              </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">{story.name}</h1>
+              <p className="text-gray-600 mt-2 text-center md:text-left">{story.role}</p>
+              {/* Adicionado o "Publicado em" aqui */}
+              {story.publishedDate && (
+                <p className="text-gray-500 text-sm mt-1 text-center md:text-left">
+                  Publicado em {new Date(story.publishedDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+              )}
             </div>
+          </div>
 
-            <div className="flex flex-wrap gap-2 mt-10">
-              {story.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className={`px-4 py-2 rounded-full text-sm font-medium ${story.bgColor}`}
-                >
-                  {tag}
-                </span>
+          <div className="mb-8">
+            <p className="text-2xl italic font-light mb-8">"{story.quote}"</p>
+
+            <Separator className="my-8" />
+
+            <div className="space-y-6">
+              {story.fullStory.map((paragraph, index) => (
+                <p key={index} className="text-lg leading-relaxed">{paragraph}</p>
               ))}
             </div>
           </div>
+
+          <div className="flex flex-wrap gap-2 mt-10">
+            {story.tags.map((tag, index) => (
+              <span
+                key={index}
+                className={`px-4 py-2 rounded-full text-sm font-medium ${story.bgColor}`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
+        {/* Fim do card da história */}
       </div>
     </Layout>
   );
