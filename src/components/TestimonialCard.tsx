@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 
 type TestimonialCardProps = {
@@ -10,79 +9,61 @@ type TestimonialCardProps = {
   quote: string;
   name: string;
   role: string;
-  imageUrl: string;
   bgColor: string;
+  // imageUrl?: string; // Manter como opcional se precisar, mas não vamos usar agora
 };
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ 
+const TestimonialCard: React.FC<TestimonialCardProps> = ({
   id,
-  quote, 
-  name, 
-  role, 
-  imageUrl, 
-  bgColor 
+  quote,
+  name,
+  role,
+  bgColor
+  // imageUrl // Não desestruturar se não for usar
 }) => {
-  const [imageError, setImageError] = useState(false);
-  
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map(part => part[0])
-      .join('')
-      .toUpperCase()
-      .substring(0, 2);
-  };
-
-  const fallbackImageUrl = imageUrl.endsWith('.svg') 
-    ? `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&format=png`
-    : imageUrl;
-
   return (
-    <div className="person-card">
-      <div className={cn("person-quote", bgColor)}>
-        <p className="text-eixo-black">{quote}</p>
+    <div className="relative rounded-lg shadow-lg overflow-hidden flex flex-col h-full"> {/* Adicionado flex flex-col h-full */}
+      {/* Corpo do balão com a citação */}
+      <div className={cn(
+        "relative px-6 py-4 flex-grow", // Flex-grow para ocupar espaço disponível
+        bgColor,
+        "rounded-t-lg", // Arredondar apenas topo
+        // Estilos para simular o balão
+        "min-h-[100px] max-h-[150px] md:min-h-[120px] md:max-h-[160px] lg:min-h-[140px] lg:max-h-[180px]", // Altura controlada
+        "flex items-center" // Alinhar texto verticalmente no centro
+      )}>
+        {/* A classe 'italic' foi removida daqui! */}
+        <p className="text-eixo-black text-base md:text-lg leading-relaxed line-clamp-4">
+            "{quote}"
+        </p>
+        {/* Opcional: Adicione um pequeno "rabo" ao balão no topo */}
+        <div className={cn(
+            "absolute bottom-0 left-6 transform translate-y-full", // Posição do rabo
+            "border-t-[15px] border-l-[15px] border-r-[15px] border-l-transparent border-r-transparent",
+            // A cor da borda-t deve ser a mesma do bgColor do balão
+            bgColor === 'bg-eixo-yellow' ? 'border-t-eixo-yellow' :
+            bgColor === 'bg-eixo-lightBlue' ? 'border-t-eixo-lightBlue' :
+            bgColor === 'bg-eixo-lightGreen' ? 'border-t-eixo-lightGreen' :
+            bgColor === 'bg-eixo-lightPurple' ? 'border-t-eixo-lightPurple' :
+            'border-t-gray-200' // Cor padrão se nenhuma corresponder
+        )}></div>
       </div>
-      
-      <div className="person-info">
-        <div className="person-avatar">
-          <Avatar className="w-full h-full">
-            {!imageError ? (
-              <AvatarImage 
-                src={imageUrl} 
-                alt={name}
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <AvatarImage 
-                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&format=png`}
-                alt={name}
-              />
-            )}
-            <AvatarFallback className="bg-eixo-purple text-white">
-              {getInitials(name)}
-            </AvatarFallback>
-          </Avatar>
+
+      {/* Seção do autor e botão */}
+      <div className="px-6 py-3 bg-white flex items-center justify-between rounded-b-lg"> {/* Arredondar apenas base */}
+        <div className="flex flex-col items-start">
+          <h4 className="font-semibold text-sm">{name}</h4>
+          <p className="text-gray-600 text-xs">{role}</p>
         </div>
-        
-        <div className="person-meta flex flex-col items-start">
-          <h4 className="font-bold">{name}</h4>
-          <p className="text-gray-600">{role}</p>
-          <Link to={`/historias/${id}`} className="mt-2 group">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className={cn(
-                "p-0 h-auto hover:bg-transparent",
-                bgColor.replace('bg-', 'text-'), // Converte 'bg-cor' para 'text-cor'
-                `hover:${bgColor.replace('bg-', 'text-')}/80` // Hover um pouco mais escuro da mesma cor
-              )}
-            >
-              Conheça mais <ArrowRight size={14} className="ml-1" />
-            </Button>
-            {/* Opcional: Se desejar a linha animada, descomente a linha abaixo e ajuste conforme necessário */}
-            {/* <div className={cn("h-0.5 mt-0.5", bgColor, "w-0 group-hover:w-full transition-all duration-300")}></div> */}
-          </Link>
-        </div>
+        <Link to={`/historias/${id}`} className="group">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="p-0 h-auto text-black hover:text-gray-700 hover:bg-transparent text-xs"
+          >
+            Conheça mais <ArrowRight size={12} className="ml-1" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

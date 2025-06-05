@@ -11,6 +11,8 @@ import StoryDetail from "./pages/StoryDetail";
 import Duvidas from "./pages/Duvidas";
 import EncontreONG from "./pages/EncontreONG";
 import NotFound from "./pages/NotFound";
+import Playground from "./pages/Playground";
+
 
 const queryClient = new QueryClient();
 
@@ -27,6 +29,7 @@ const App = () => (
           <Route path="/historias/:id" element={<StoryDetail />} />
           <Route path="/duvidas" element={<Duvidas />} />
           <Route path="/encontre-apoio" element={<EncontreONG />} />
+          <Route path="/playground" element={<Playground />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
