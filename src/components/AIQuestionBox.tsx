@@ -3,6 +3,7 @@ import { Loader2, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import ReactMarkdown from 'react-markdown';
 
 const AIQuestionBox: React.FC = () => {
   const [aiQuestion, setAiQuestion] = useState("");
@@ -10,8 +11,7 @@ const AIQuestionBox: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // ***** SUBSTITUA ESTE PLACEHOLDER PELO URL REAL DA SUA CLOUD FUNCTION *****
-  const CLOUD_FUNCTION_URL = "https://askfaq-wx5kmwezkq-uc.a.run.app";
+  const CLOUD_FUNCTION_URL = "https://askfaq-wx5kmwezkq-uc.a.run.app"; // Seu URL da Cloud Function
 
   const handleAskAI = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,29 +29,26 @@ const AIQuestionBox: React.FC = () => {
     setAiAnswer(null);
 
     try {
-      // ***** AQUI VAI A CHAMADA REAL PARA A CLOUD FUNCTION *****
       const response = await fetch(CLOUD_FUNCTION_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: aiQuestion }), // Envia a pergunta do usuário
+        body: JSON.stringify({ question: aiQuestion }),
       });
 
       if (!response.ok) {
-        // Se a resposta não for OK (status 200), joga um erro
-        // Tenta pegar mais detalhes do erro do corpo da resposta, se disponível
-        const errorData = await response.text(); // Pega o corpo da resposta como texto
+        const errorData = await response.text();
         throw new Error(
           `Erro na requisição: ${response.status} ${response.statusText} - Detalhes: ${errorData}`
         );
       }
 
-      const data = await response.json(); // Espera a resposta em JSON do Cloud Function
-      setAiAnswer(data.answer); // Define a resposta recebida da IA
+      const data = await response.json();
+      setAiAnswer(data.answer);
 
     } catch (error) {
-      console.error("Erro ao chamar Cloud Function:", error); // Loga o erro completo para depuração
+      console.error("Erro ao chamar Cloud Function:", error);
       toast({
         title: "Erro ao processar sua pergunta",
         description: "Por favor tente novamente mais tarde. Detalhes: " + (error instanceof Error ? error.message : String(error)),
@@ -92,7 +89,17 @@ const AIQuestionBox: React.FC = () => {
       {aiAnswer && (
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           <h3 className="font-medium mb-2">Resposta:</h3>
-          <p className="text-gray-700">{aiAnswer}</p>
+          <div className="text-gray-700">
+            <ReactMarkdown>{aiAnswer}</ReactMarkdown>
+          </div>
+        </div>
+      )}
+
+      {/* NOVO: Seção de Disclaimer da IA */}
+      {aiAnswer && ( // Mostra o disclaimer apenas se houver uma resposta
+        <div className="bg-eixo-darkBlue bg-opacity-5 p-4 rounded-lg mt-4 text-sm text-eixo-darkBlue">
+          <p className="font-semibold mb-1">Atenção:</p>
+          <p>Este assistente de IA está em fase de evolução e aprendizado. As informações fornecidas são para fins de apoio geral e não substituem a consulta a profissionais de saúde. Para informações precisas sobre diagnóstico, tratamento ou aconselhamento pessoal, sempre procure um médico, terapeuta ou especialista da área. Não confie 100% nas respostas geradas pela IA.</p>
         </div>
       )}
     </div>
