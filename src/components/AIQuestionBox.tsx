@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Loader2, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,9 @@ const AIQuestionBox: React.FC = () => {
   const [aiAnswer, setAiAnswer] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  // ***** SUBSTITUA ESTE PLACEHOLDER PELO URL REAL DA SUA CLOUD FUNCTION *****
+  const CLOUD_FUNCTION_URL = "https://askfaq-wx5kmwezkq-uc.a.run.app";
 
   const handleAskAI = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,15 +29,32 @@ const AIQuestionBox: React.FC = () => {
     setAiAnswer(null);
 
     try {
-      // Mock da resposta da IA
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setAiAnswer(
-        `Com relação à sua pergunta "${aiQuestion}": O tratamento moderno para HIV é altamente eficaz e permite que as pessoas vivam vidas longas e saudáveis. Com o uso consistente de medicamentos antirretrovirais, muitas pessoas conseguem atingir carga viral indetectável, o que significa que não podem transmitir o vírus por via sexual. É importante consultar um profissional de saúde para informações específicas sobre o seu caso.`
-      );
+      // ***** AQUI VAI A CHAMADA REAL PARA A CLOUD FUNCTION *****
+      const response = await fetch(CLOUD_FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question: aiQuestion }), // Envia a pergunta do usuário
+      });
+
+      if (!response.ok) {
+        // Se a resposta não for OK (status 200), joga um erro
+        // Tenta pegar mais detalhes do erro do corpo da resposta, se disponível
+        const errorData = await response.text(); // Pega o corpo da resposta como texto
+        throw new Error(
+          `Erro na requisição: ${response.status} ${response.statusText} - Detalhes: ${errorData}`
+        );
+      }
+
+      const data = await response.json(); // Espera a resposta em JSON do Cloud Function
+      setAiAnswer(data.answer); // Define a resposta recebida da IA
+
     } catch (error) {
+      console.error("Erro ao chamar Cloud Function:", error); // Loga o erro completo para depuração
       toast({
         title: "Erro ao processar sua pergunta",
-        description: "Por favor tente novamente mais tarde.",
+        description: "Por favor tente novamente mais tarde. Detalhes: " + (error instanceof Error ? error.message : String(error)),
         variant: "destructive",
       });
     } finally {
