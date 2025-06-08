@@ -22,8 +22,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="w-full md:w-1/2 mb-12 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                Olá, <br />
-                estamos aqui para te mostrar que não é o fim.
+                Olá, <br /> estamos aqui para te mostrar que não é o fim.
               </h1>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8">
                 <a 
@@ -79,7 +78,7 @@ const Index = () => {
         <FeatureSection
           title="Encontre apoio perto de você"
           description="Descubra organizações e casas de apoio em todo o Brasil. Um lugar seguro para encontrar acolhimento e suporte especializado."
-          imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.0.3"
+          imageSrc="/public/locais.svg"
           buttonText="Buscar ONGs"
           buttonLink="/encontre-apoio"
           imagePosition="left"
@@ -88,7 +87,7 @@ const Index = () => {
         <FeatureSection
           title="Inspire-se com histórias de vida"
           description="Leia relatos reais de pessoas que vivem com HIV, compartilhando suas jornadas de superação, aprendizado e esperança."
-          imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3"
+          imageSrc="/public/historias.svg"
           buttonText="Ver Histórias"
           buttonLink="/historias"
           imagePosition="right"
@@ -97,7 +96,7 @@ const Index = () => {
         <FeatureSection
           title="Tire todas as suas dúvidas"
           description="Acesse informações confiáveis e respostas claras sobre HIV, tratamento, prevenção e direitos. Conte também com nosso chat de apoio."
-          imageSrc="https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3"
+          imageSrc="/public/duvidas.svg"
           buttonText="Ver Perguntas"
           buttonLink="/duvidas"
           imagePosition="left"

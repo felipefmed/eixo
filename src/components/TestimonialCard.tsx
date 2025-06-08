@@ -10,7 +10,7 @@ type TestimonialCardProps = {
   name: string;
   role: string;
   bgColor: string;
-  // imageUrl?: string; // Manter como opcional se precisar, mas não vamos usar agora
+  imageUrl: string; // <-- CORREÇÃO: Adicione esta linha
 };
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -18,8 +18,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   quote,
   name,
   role,
-  bgColor
-  // imageUrl // Não desestruturar se não for usar
+  bgColor,
+  imageUrl // <-- CORREÇÃO: Desestruture imageUrl, pois você está passando-o.
+            // Mesmo que não use o prop aqui, o TypeScript precisa saber que ele é recebido.
 }) => {
   return (
     <div className="relative rounded-lg shadow-lg overflow-hidden flex flex-col h-full"> {/* Adicionado flex flex-col h-full */}
@@ -52,6 +53,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       {/* Seção do autor e botão */}
       <div className="px-6 py-3 bg-white flex items-center justify-between rounded-b-lg"> {/* Arredondar apenas base */}
         <div className="flex flex-col items-start">
+          {/* Se você quisesse exibir a imagem, faria algo como: */}
+          {/* {imageUrl && <img src={imageUrl} alt={name} className="w-10 h-10 rounded-full mr-2" />} */}
           <h4 className="font-semibold text-sm">{name}</h4>
           <p className="text-gray-600 text-xs">{role}</p>
         </div>

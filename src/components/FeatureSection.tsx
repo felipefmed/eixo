@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -23,7 +22,6 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 }) => {
   const [imageError, setImageError] = useState(false);
   
-  // Múltiplas opções de imagens de fallback para maior confiabilidade (usando PNGs)
   const fallbackImages = [
     "https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?ssl=1",
     "https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder.png?ssl=1",
@@ -31,18 +29,21 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
     "https://plus.unsplash.com/premium_photo-1670984940113-f3aa1cd1309a?q=80&w=580&auto=format&fit=crop&fm=png"
   ];
   
-  // Escolher uma imagem de fallback aleatória para variedade
   const getRandomFallbackImage = () => {
     const randomIndex = Math.floor(Math.random() * fallbackImages.length);
     return fallbackImages[randomIndex];
   };
   
-  // Use the original image if it's a PNG, otherwise use a fallback
   const getImageSource = () => {
     if (imageError) {
       return getRandomFallbackImage();
     }
     
+    // Se a imagem for um SVG e você não quer que ela seja cortada, e o fundo seja transparente,
+    // o object-contain é geralmente a melhor opção.
+    // Para PNGs ou outras imagens, object-fit: cover ainda pode ser desejável
+    // dependendo de como você quer que elas preencham o espaço.
+    // Por enquanto, vamos aplicar object-contain, que deve resolver o corte para SVG.
     return imageSrc;
   };
   
@@ -55,11 +56,13 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
         )}>
           <div className="w-full md:w-1/2">
             <div className="rounded-lg overflow-hidden mx-auto max-w-lg">
-              <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
+              {/* REMOVIDO: bg-muted do AspectRatio para remover o fundo acinzentado */}
+              <AspectRatio ratio={16 / 9} className="rounded-lg overflow-hidden"> 
                 <img 
                   src={getImageSource()}
                   alt={title}
-                  className="w-full h-full object-cover"
+                  // ALTERADO: object-cover para object-contain para evitar o corte
+                  className="w-full h-full object-contain" 
                   onError={() => setImageError(true)}
                 />
               </AspectRatio>
