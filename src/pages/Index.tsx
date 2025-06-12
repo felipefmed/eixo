@@ -1,3 +1,5 @@
+// src/pages/Index.tsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
@@ -6,25 +8,31 @@ import TestimonialCard from '../components/TestimonialCard';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { useChatState } from '../components/ChatButton';
 
+// Componente principal da página inicial (Home).
 const Index = () => {
+  // Hook para gerenciar o estado do chat (abrir/fechar).
   const { openChat } = useChatState;
 
+  // Função para lidar com o clique no botão "Converse com alguém", abrindo o chat.
   const handleChatClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    openChat();
+    e.preventDefault(); // Impede o comportamento padrão do link.
+    openChat(); // Chama a função para abrir o chat.
   };
 
   return (
+    // Componente de layout que envolve todo o conteúdo da página.
     <Layout>
-      {/* Hero Section */}
+      {/* Seção Hero: A primeira seção de destaque da página, com título, botões e imagem. */}
       <section className="relative bg-white py-24 md:py-32 px-6">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center">
+            {/* Conteúdo de texto e botões da seção Hero. */}
             <div className="w-full md:w-1/2 mb-12 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
                 Olá, <br /> estamos aqui para te mostrar que não é o fim.
               </h1>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8">
+                {/* Botão para conversar com alguém, que abre o chat. */}
                 <a 
                   href="#" 
                   onClick={handleChatClick} 
@@ -32,6 +40,7 @@ const Index = () => {
                 >
                   Converse com alguém
                 </a>
+                {/* Botões adicionais para navegação em outras seções do projeto. */}
                 <div className="flex flex-wrap gap-4 mt-4 sm:mt-0">
                   <Link to="/projeto" className="btn btn-primary">
                     Entenda o Projeto
@@ -42,6 +51,7 @@ const Index = () => {
                 </div>
               </div>
             </div>
+            {/* Imagem da seção Hero, com proporção de aspecto e fallback para erro. */}
             <div className="w-full md:w-1/2">
               <AspectRatio ratio={3/2} className="max-w-md mx-auto">
                 <img 
@@ -59,7 +69,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Seção Sobre o Eixo: Informações gerais sobre o projeto. */}
       <section className="bg-eixo-purple bg-opacity-20 py-20 px-6">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 uppercase">Sobre o Eixo</h2>
@@ -73,8 +83,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Seção de Serviços/Recursos: Usa o componente FeatureSection para listar as principais funcionalidades. */}
       <section className="bg-white">
+        {/* Recurso 1: Encontrar apoio (ONGs). */}
         <FeatureSection
           title="Encontre apoio perto de você"
           description="Descubra organizações e casas de apoio em todo o Brasil. Um lugar seguro para encontrar acolhimento e suporte especializado."
@@ -84,6 +95,7 @@ const Index = () => {
           imagePosition="left"
         />
 
+        {/* Recurso 2: Histórias de vida. */}
         <FeatureSection
           title="Inspire-se com histórias de vida"
           description="Leia relatos reais de pessoas que vivem com HIV, compartilhando suas jornadas de superação, aprendizado e esperança."
@@ -93,6 +105,7 @@ const Index = () => {
           imagePosition="right"
         />
 
+        {/* Recurso 3: Perguntas e respostas (dúvidas e chat). */}
         <FeatureSection
           title="Tire todas as suas dúvidas"
           description="Acesse informações confiáveis e respostas claras sobre HIV, tratamento, prevenção e direitos. Conte também com nosso chat de apoio."
@@ -103,48 +116,52 @@ const Index = () => {
         />
       </section>
 
-      {/* Testimonials Section */}
+      {/* Seção de Depoimentos: Exibe uma grade de cards de depoimentos. */}
       <section className="bg-gray-50 py-20 px-6">
         <div className="container mx-auto">
+          {/* Título opcional para a seção de depoimentos (pode ser adicionado aqui se desejar). */}
+          {/* <h2 className="text-4xl font-extrabold text-center mb-16 text-gray-800">O que as pessoas estão dizendo</h2> */}
+
+          {/* Grade de cards de depoimentos. */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* Adicionado o 'id' para cada TestimonialCard */}
+            {/* Card de Depoimento 1 (Gabriel Estrela). */}
             <TestimonialCard 
-              id="gabriel-estrela" // ID adicionado
+              id="gabriel-estrela" // ID único do depoimento.
               quote="É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura." 
               name="Gabriel Estrela" 
               role="Criador de conteúdo" 
-              imageUrl="https://i.pravatar.cc/150?u=gabriel" 
               bgColor="bg-eixo-yellow" 
             />
             
+            {/* Card de Depoimento 2 (Tamillys Lírio). */}
             <TestimonialCard 
-              id="tamillys-lirio" // ID adicionado
+              id="tamillys-lirio" // ID único do depoimento.
               quote="Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos." 
               name="Tamillys Lírio" 
               role="Psicóloga e ativista" 
-              imageUrl="https://i.pravatar.cc/150?u=tamillys" 
               bgColor="bg-eixo-lightBlue" 
             />
 
+            {/* Card de Depoimento 3 (Silvia Almeida). */}
             <TestimonialCard 
-              id="silvia-almeida" // ID adicionado
+              id="silvia-almeida" // ID único do depoimento.
               quote="É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real." 
               name="Silvia Almeira" 
               role="Ativista e consultora" 
-              imageUrl="https://i.pravatar.cc/150?u=silvia" 
               bgColor="bg-eixo-lightGreen" 
             />
 
+            {/* Card de Depoimento 4 (João Netto). */}
             <TestimonialCard 
-              id="joao-netto" // ID adicionado
+              id="joao-netto" // ID único do depoimento.
               quote="O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo." 
               name="João Netto" 
               role="Criador de conteúdo" 
-              imageUrl="https://i.pravatar.cc/150?u=joao" 
               bgColor="bg-eixo-lightPurple" 
             />
           </div>
           
+          {/* Botão centralizado para "Conheça mais histórias". */}
           <div className="text-center mt-12">
             <Link to="/historias" className="btn btn-primary">
               Conheça mais histórias
@@ -156,4 +173,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Index; // <-- ESTA LINHA É FUNDAMENTAL E FOI RE-ADICIONADA
