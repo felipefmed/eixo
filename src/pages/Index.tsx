@@ -89,7 +89,7 @@ const Index = () => {
         <FeatureSection
           title="Encontre apoio perto de você"
           description="Descubra organizações e casas de apoio em todo o Brasil. Um lugar seguro para encontrar acolhimento e suporte especializado."
-          imageSrc="/public/locais.svg"
+          imageSrc="/locais.svg"
           buttonText="Buscar ONGs"
           buttonLink="/encontre-apoio"
           imagePosition="left"
