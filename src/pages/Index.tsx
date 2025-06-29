@@ -99,7 +99,7 @@ const Index = () => {
         <FeatureSection
           title="Inspire-se com histórias de vida"
           description="Leia relatos reais de pessoas que vivem com HIV, compartilhando suas jornadas de superação, aprendizado e esperança."
-          imageSrc="/public/historias.svg"
+          imageSrc="/historias.svg"
           buttonText="Ver Histórias"
           buttonLink="/historias"
           imagePosition="right"
@@ -109,7 +109,7 @@ const Index = () => {
         <FeatureSection
           title="Tire todas as suas dúvidas"
           description="Acesse informações confiáveis e respostas claras sobre HIV, tratamento, prevenção e direitos. Conte também com nosso chat de apoio."
-          imageSrc="/public/duvidas.svg"
+          imageSrc="/duvidas.svg"
           buttonText="Ver Perguntas"
           buttonLink="/duvidas"
           imagePosition="left"
