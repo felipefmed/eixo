@@ -24,7 +24,7 @@ const Navbar = () => {
   return <header className="fixed w-full top-0 left-0 z-50 bg-white py-4 px-6 md:px-12 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <img alt="Logo Eixo" className="h-8" src="/lovable-uploads/b36f9cde-8da7-4627-ab5c-7d56a3c2b400.png" />
+          <img alt="Logo Eixo" className="h-8" src="/eixo-icon.svg" />
         </Link>
 
         {/* Desktop Menu */}
@@ -33,7 +33,7 @@ const Navbar = () => {
             INÍCIO
           </Link>
           <Link to="/projeto" className={cn("font-medium transition-colors", isActive('/projeto') ? "text-eixo-purple" : "hover:text-eixo-purple")}>
-            O PROJETO
+            O EIXO
           </Link>
           <Link to="/historias" className={cn("font-medium transition-colors", isActive('/historias') ? "text-eixo-purple" : "hover:text-eixo-purple")}>
             HISTÓRIAS

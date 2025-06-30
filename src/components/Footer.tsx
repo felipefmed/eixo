@@ -7,7 +7,7 @@ const Footer = () => {
           {/* Logo e Descrição */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="inline-block mb-6">
-              <img alt="Logo Eixo" className="h-8" src="/lovable-uploads/590ca905-15d4-4302-b9c6-2b5a6d555676.png" />
+              <img alt="Logo Eixo" className="h-8" src="/eixo.svg" />
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
               Uma iniciativa para apoiar pessoas que vivem com HIV, combater a desinformação e reduzir o estigma.
