@@ -6,45 +6,45 @@ import { cn } from '@/lib/utils'; // Importar cn se não estiver importado
 
 // Certifique-se que esses dados não tenham imageUrl, como conversamos
 const stories = {
-  'gabriel-estrela': {
-    id: 'gabriel-estrela',
+  'eduardo': {
+    id: 'eduardo',
     quote: 'É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura.',
-    name: 'Gabriel Estrela',
+    name: 'Eduardo',
     role: 'Criador de conteúdo',
     bgColor: 'bg-eixo-yellow',
   },
-  'tamillys-lirio': {
-    id: 'tamillys-lirio',
+  'lara': {
+    id: 'lara',
     quote: 'Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos.',
-    name: 'Tamillys Lírio',
+    name: 'Lara',
     role: 'Psicóloga e ativista',
     bgColor: 'bg-eixo-lightBlue',
   },
-  'silvia-almeida': {
-    id: 'silvia-almeida',
+  'camila': {
+    id: 'camila',
     quote: 'É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real.',
-    name: 'Silvia Almeira',
+    name: 'Camila',
     role: 'Ativista e consultora',
     bgColor: 'bg-eixo-lightGreen',
   },
-  'joao-netto': {
-    id: 'joao-netto',
+  'Guilherme': {
+    id: 'guilherme',
     quote: 'O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo.',
-    name: 'João Netto',
+    name: 'Guilherme',
     role: 'Criador de conteúdo',
     bgColor: 'bg-eixo-lightPurple',
   },
-    'mariana-santos': {
-    id: 'mariana-santos',
+    'marina': {
+    id: 'marina',
     quote: 'Quando descobri meu diagnóstico, pensei que minha vida tinha acabado. Hoje, vivo normalmente, sigo meu tratamento e tenho um filho que nasceu sem o vírus.',
-    name: 'Mariana Santos',
+    name: 'Marina',
     role: 'Professora',
     bgColor: 'bg-eixo-yellow',
   },
-  'carlos-ribeiro': {
-    id: 'carlos-ribeiro',
+  'rodrigo': {
+    id: 'rodrigo',
     quote: 'É importante falar: viver com HIV hoje não é como nos anos 80 ou 90. A medicina avançou muito e podemos ter uma vida normal, com qualidade e longevidade.',
-    name: 'Carlos Ribeiro',
+    name: 'Rodrigo',
     role: 'Médico e ativista',
     bgColor: 'bg-eixo-lightBlue',
   },

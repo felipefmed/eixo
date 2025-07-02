@@ -18,9 +18,9 @@ interface StoryData {
 }
 
 const stories: Record<string, StoryData> = {
-  'gabriel-estrela': {
-    id: 'gabriel-estrela',
-    name: 'Gabriel Estrela',
+  'eduardo': {
+    id: 'eduardo',
+    name: 'Eduardo',
     role: 'Criador de conteúdo',
     imageUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
     quote: 'É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura.',
@@ -36,9 +36,9 @@ const stories: Record<string, StoryData> = {
     tags: ['Visibilidade', 'Educação', 'Indetectável'],
     publishedDate: '2023-10-26' 
   },
-  'tamillys-lirio': {
-    id: 'tamillys-lirio',
-    name: 'Tamillys Lírio',
+  'lara': {
+    id: 'lara',
+    name: 'Lara',
     role: 'Psicóloga e ativista',
     imageUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
     quote: 'Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos.',
@@ -54,9 +54,9 @@ const stories: Record<string, StoryData> = {
     tags: ['Saúde Mental', 'Ativismo', 'Educação'],
     publishedDate: '2024-01-15' 
   },
-  'silvia-almeida': {
-    id: 'silvia-almeida',
-    name: 'Silvia Almeida',
+  'camila': {
+    id: 'camila',
+    name: 'Camila',
     role: 'Ativista e consultora',
     imageUrl: 'https://randomuser.me/api/portraits/women/29.jpg',
     quote: 'É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real.',
@@ -72,9 +72,9 @@ const stories: Record<string, StoryData> = {
     tags: ['Prevenção', 'Conscientização', 'PrEP'],
     publishedDate: '2023-08-01'
   },
-  'joao-netto': {
-    id: 'joao-netto',
-    name: 'João Netto',
+  'guilherme': {
+    id: 'guilherme',
+    name: 'Guilherme',
     role: 'Criador de conteúdo',
     imageUrl: 'https://randomuser.me/api/portraits/men/64.jpg',
     quote: 'O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo.',
@@ -90,9 +90,9 @@ const stories: Record<string, StoryData> = {
     tags: ['Indetectável', 'Juventude', 'Redes sociais'],
     publishedDate: '2024-03-05' 
   },
-  'mariana-santos': {
-    id: 'mariana-santos',
-    name: 'Mariana Santos',
+  'marina': {
+    id: 'marina',
+    name: 'Marina',
     role: 'Professora',
     imageUrl: 'https://randomuser.me/api/portraits/women/17.jpg',
     quote: 'Quando descobri meu diagnóstico, pensei que minha vida tinha acabado. Hoje, vivo normalmente, sigo meu tratamento e tenho um filho que nasceu sem o vírus.',
@@ -108,9 +108,9 @@ const stories: Record<string, StoryData> = {
     tags: ['Maternidade', 'Família', 'Gravidez'],
     publishedDate: '2023-11-01' 
   },
-  'carlos-ribeiro': {
-    id: 'carlos-ribeiro',
-    name: 'Carlos Ribeiro',
+  'rodrigo': {
+    id: 'rodrigo',
+    name: 'Rodrigo',
     role: 'Médico e ativista',
     imageUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
     quote: 'É importante falar: viver com HIV hoje não é como nos anos 80 ou 90. A medicina avançou muito e podemos ter uma vida normal, com qualidade e longevidade.',
@@ -126,9 +126,9 @@ const stories: Record<string, StoryData> = {
     tags: ['Medicina', 'Tratamento', 'Saúde pública'],
     publishedDate: '2023-09-20' 
   },
-  'paulo-henrique': {
-    id: 'paulo-henrique',
-    name: 'Paulo Henrique',
+  'paulo': {
+    id: 'paulo',
+    name: 'Paulo',
     role: 'Designer e voluntário',
     imageUrl: 'https://randomuser.me/api/portraits/men/42.jpg',
     quote: 'Falar abertamente sobre meu status sorológico me libertou. O segredo só aumenta o estigma, e o estigma mata mais que o próprio vírus.',

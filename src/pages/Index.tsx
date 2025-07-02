@@ -124,38 +124,38 @@ const Index = () => {
 
           {/* Grade de cards de depoimentos. */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* Card de Depoimento 1 (Gabriel Estrela). */}
+            {/* Card de Depoimento 1. */}
             <TestimonialCard 
-              id="gabriel-estrela" // ID único do depoimento.
+              id="eduardo" // ID único do depoimento.
               quote="É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura." 
-              name="Gabriel Estrela" 
+              name="Eduardo" 
               role="Criador de conteúdo" 
               bgColor="bg-eixo-yellow" 
             />
             
-            {/* Card de Depoimento 2 (Tamillys Lírio). */}
+            {/* Card de Depoimento 2. */}
             <TestimonialCard 
-              id="tamillys-lirio" // ID único do depoimento.
+              id="lara" // ID único do depoimento.
               quote="Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos." 
-              name="Tamillys Lírio" 
+              name="Lara" 
               role="Psicóloga e ativista" 
               bgColor="bg-eixo-lightBlue" 
             />
 
-            {/* Card de Depoimento 3 (Silvia Almeida). */}
+            {/* Card de Depoimento 3. */}
             <TestimonialCard 
-              id="silvia-almeida" // ID único do depoimento.
+              id="camila" // ID único do depoimento.
               quote="É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real." 
-              name="Silvia Almeira" 
+              name="Camila" 
               role="Ativista e consultora" 
               bgColor="bg-eixo-lightGreen" 
             />
 
-            {/* Card de Depoimento 4 (João Netto). */}
+            {/* Card de Depoimento 4. */}
             <TestimonialCard 
-              id="joao-netto" // ID único do depoimento.
+              id="guilherme" // ID único do depoimento.
               quote="O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo." 
-              name="João Netto" 
+              name="Guilherme" 
               role="Criador de conteúdo" 
               bgColor="bg-eixo-lightPurple" 
             />

@@ -9,9 +9,9 @@ import ShareStorySection from '../components/ShareStorySection';
 // ... (seus dados de 'stories' permanecem os mesmos) ...
 const stories = [
   {
-    id: 'gabriel-estrela',
+    id: 'eduardo',
     quote: "É muito ruim ter alguma coisa na gente sobre a qual você não se sente confortável de falar. Isso impede muitos processos de cura.",
-    name: "Gabriel Estrela",
+    name: "Eduardo",
     role: "Criador de conteúdo",
     imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
     bgColor: "bg-eixo-lightPurple",
@@ -19,9 +19,9 @@ const stories = [
     tags: ["Visibilidade", "Educação", "Indetectável"]
   },
   {
-    id: 'tamillys-lirio',
+    id: 'lara',
     quote: "Sei que o assunto ainda é tabu, não há informação correta, muitas coisas são estigmatizadas; precisamos dar visibilidade a pauta do HIV nos espaços que ocupamos.",
-    name: "Tamillys Lírio",
+    name: "lara",
     role: "Psicóloga e ativista",
     imageUrl: "https://randomuser.me/api/portraits/women/44.jpg",
     bgColor: "bg-eixo-lightBlue",
@@ -29,9 +29,9 @@ const stories = [
     tags: ["Saúde Mental", "Ativismo", "Educação"]
   },
   {
-    id: 'silvia-almeida',
+    id: 'camila',
     quote: "É legal ter HIV? Claro que não. Mas é importante saber que qualquer um que tenha uma vida sexual ativa é vulnerável ao vírus. As pessoas precisam cair na real.",
-    name: "Silvia Almeira",
+    name: "Camila",
     role: "Ativista e consultora",
     imageUrl: "https://randomuser.me/api/portraits/women/29.jpg",
     bgColor: "bg-eixo-lightGreen",
@@ -39,9 +39,9 @@ const stories = [
     tags: ["Prevenção", "Conscientização", "PrEP"]
   },
   {
-    id: 'joao-netto',
+    id: 'guilherme',
     quote: "O indetectável é aquele cara que tem uma carga viral tão baixa que não pode mais transmitir o vírus. Então, quando a gente chega nesse ponto, se sente meio super-herói mesmo.",
-    name: "João Netto",
+    name: "Guilherme",
     role: "Criador de conteúdo",
     imageUrl: "https://randomuser.me/api/portraits/men/64.jpg",
     bgColor: "bg-eixo-lightPurple",
@@ -49,8 +49,8 @@ const stories = [
     tags: ["Indetectável", "Juventude", "Redes sociais"]
   },
   {
-    id: 'mariana-santos',
-    name: 'Mariana Santos',
+    id: 'marina',
+    name: 'Marina',
     role: 'Professora',
     imageUrl: 'https://randomuser.me/api/portraits/women/17.jpg',
     quote: 'Quando descobri meu diagnóstico, pensei que minha vida tinha acabado. Hoje, vivo normalmente, sigo meu tratamento e tenho um filho que nasceu sem o vírus.',
@@ -66,8 +66,8 @@ const stories = [
     tags: ['Maternidade', 'Família', 'Gravidez']
   },
   {
-    id: 'carlos-ribeiro',
-    name: 'Carlos Ribeiro',
+    id: 'rodrigo',
+    name: 'Rodrigo',
     role: 'Médico e ativista',
     imageUrl: 'https://randomuser.me/api/portraits/men/22.jpg',
     quote: 'É importante falar: viver com HIV hoje não é como nos anos 80 ou 90. A medicina avançou muito e podemos ter uma vida normal, com qualidade e longevidade.',
@@ -83,8 +83,8 @@ const stories = [
     tags: ['Medicina', 'Tratamento', 'Saúde pública']
   },
   {
-    id: 'paulo-henrique',
-    name: 'Paulo Henrique',
+    id: 'paulo',
+    name: 'Paulo',
     role: 'Designer e voluntário',
     imageUrl: 'https://randomuser.me/api/portraits/men/42.jpg',
     quote: 'Falar abertamente sobre meu status sorológico me libertou. O segredo só aumenta o estigma, e o estigma mata mais que o próprio vírus.',
