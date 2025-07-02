@@ -23,7 +23,7 @@ const Index = () => {
     // Componente de layout que envolve todo o conteúdo da página.
     <Layout>
       {/* Seção Hero: A primeira seção de destaque da página, com título, botões e imagem. */}
-      <section className="relative bg-white py-24 md:py-32 px-6">
+      <section className="relative py-24 md:py-32 px-6">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center">
             {/* Conteúdo de texto e botões da seção Hero. */}
@@ -84,7 +84,7 @@ const Index = () => {
       </section>
 
       {/* Seção de Serviços/Recursos: Usa o componente FeatureSection para listar as principais funcionalidades. */}
-      <section className="bg-white">
+      <section className="bg-white/0">
         {/* Recurso 1: Encontrar apoio (ONGs). */}
         <FeatureSection
           title="Encontre apoio perto de você"
@@ -117,7 +117,7 @@ const Index = () => {
       </section>
 
       {/* Seção de Depoimentos: Exibe uma grade de cards de depoimentos. */}
-      <section className="bg-gray-50 py-20 px-6">
+      <section className="bg-gray-50/50 py-20 px-6">
         <div className="container mx-auto">
           {/* Título opcional para a seção de depoimentos (pode ser adicionado aqui se desejar). */}
           {/* <h2 className="text-4xl font-extrabold text-center mb-16 text-gray-800">O que as pessoas estão dizendo</h2> */}
